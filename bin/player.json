@@ -1,0 +1,5805 @@
+{
+  "player": {
+    "info": {
+      "name": "Get player info",
+      "description": "To get the information of the specific player username",
+      "uri": "baseURI/player/info/",
+      "method": "POST",
+      "params": {
+        "post": [
+          {
+            "name": "playername",
+            "type": "string",
+            "description": "Player's username",
+            "mandatory": "1",
+            "minlength": 2,
+            "maxlength": 32,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "with3RDPData",
+            "type": "integer",
+            "description": "Show 3RDP container data",
+            "mandatory": "0",
+            "regex": "/^0|1$/",
+            "values": [
+              0,
+              1
+            ]
+          }
+        ]
+      },
+      "example": {
+        "success": [
+          {
+            "request": "baseURI/player/info/playername/BEZ_PLAYER1/with3RDPData/1",
+            "response": "{\"result\":{\"CASINONAME\":\"playtech\",\"PLAYERNAME\":\"BEZ_PLAYER1\",\"ADDRESS\":\"str amosova 12\",\"BIRTHDATE\":\"1952-01-01\",\"CITY\":\"NA\",\"COUNTRYCODE\":\"UA\",\"CURRENCY\":\"USD\",\"MARKO LABEL 2\":\"pwd\",\"EMAIL\":\"yevgeniy.bezpaluy@playtech.com\",\"FAX\":\"11111\",\"FIRSTNAME\":\"TEST_11\",\"LASTNAME\":\"TEST_22\",\"NOBONUS\":\"0\",\"OCCUPATION\":\"NA\",\"PHONE\":\"11111222\",\"SEX\":\"M\",\"STATE\":\"NA\",\"VIPLEVEL\":\"3\",\"WANTMAIL\":\"1\",\"ZIP\":\"NA\", \"ADVERTISER\":\"default4f\",\"BANNERID\":\"-\",\"CLIENTTYPE\":\"landbasedcasino\",\"CREFERER\":\"null;null;null;null;null;null;null;null\",\"LANGUAGECODE\":\"AR\",\"SERIAL\":\"TCW20CARDUSER49831\",\"SIGNUPDATE\":\"2014-01-17 09:48:41.000\",\"SIGNUPCLIENTVERSION\":\"-\",\"PASSWORD\":\"4F643CAD255A968078605B4470AFB2A2CA61D658\",\"FROZEN\":\"0\",\"CLIENTSKIN\":\"playtech\",\"SIGNUPCLIENTPLATFORM\":\"download\",\"INTERNAL\":\"0\",\"SUSPENDED\":\"0\",\"FULLFIRSTNAME\":null,\"FULLFIRSTSURNAME\":null, \"FULLSECONDSURNAME\":null,\"TAXRESIDENCEREGION\":null,\"CODE\":\"4525181\",\"BALANCE\":\"68\",\"MAXBALANCE\":\"118\",\"RESERVEDBALANCE\":\"0\",\"CURRENTBET\":\"0\",\"CURRENTBONUSBET\":\"0\",\"PENDINGBONUSBALANCE\":\"0\",\"BONUSBALANCE\":\"20\", \"COMPPOINTS\":\"0\",\"TOTALCOMPPOINTS\":\"0\",\"KIOSKCODE\":\"207241\",\"KIOSKADMINCODE\":\"706781\",\"CASINOCODE\":\"86\",\"LOCKEDMINUTES\":null,\"CURRENCYCODE\":0,\"CASINONICKNAME\":0,\"NETWORKNICKNAMES\":[{\"networkId\":\"4600\",\"networkData\":[{\"key\":1,\"value\":null},{\"key\":2,\"value\":\"casino\"}]}],\"ISINGAME\":0,\"KIOSKNAME\":\"bez_kiosk1\",\"KIOSKADMINNAME\":\"bez1\",\"3RDPData\":{\"custom01\":\"custom01 field value\",\"custom02\":\"custom02 field value\",\"custom03\":\"custom03 field value\"}}}"
+          }
+        ],
+        "error": [
+          {
+            "request": "baseURI/player/info/playername/ZELTESTERR",
+            "response": "{\"error\":\"Player does not exist\",\"errorcode\":41}"
+          }
+        ]
+      },
+      "errorresponse": {
+        "responsedata": [
+          {
+            "field": "error",
+            "type": "string",
+            "mandatory": "1",
+            "description": "Error message"
+          },
+          {
+            "field": "errorcode",
+            "type": "integer",
+            "mandatory": "1",
+            "description": "Error code"
+          }
+        ],
+        "errors": [
+          {
+            "code": 10,
+            "description": "Playername not specified"
+          },
+          {
+            "code": 11,
+            "description": "Casino name not specified"
+          },
+          {
+            "code": 41,
+            "description": "Player does not exist"
+          },
+          {
+            "code": 49,
+            "description": "Player is not allowed for the Entity"
+          },
+          {
+            "code": 71,
+            "description": "Could not load player data. Error: 'UMS API return error on access request attempt'"
+          },
+          {
+            "code": 72,
+            "description": "Could not load player data. Error: 'Service error accessing UMS API'"
+          },
+          {
+            "code": 73,
+            "description": "Could not load player data from database. Error: 'Database error occured, please contact support'. Please, try again later"
+          }
+        ]
+      },
+      "successresponse": {
+        "responsetype": "application/json",
+        "responsedata": [
+          {
+            "result": [
+              {
+                "field": "CASINONAME",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Casino name"
+              },
+              {
+                "field": "PLAYERNAME",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Username"
+              },
+              {
+                "field": "ADDRESS",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Address"
+              },
+              {
+                "field": "BIRTHDATE",
+                "type": "date",
+                "mandatory": "1",
+                "description": "Birthdate"
+              },
+              {
+                "field": "CITY",
+                "type": "string",
+                "mandatory": "1",
+                "description": "City"
+              },
+              {
+                "field": "COUNTRYCODE",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Country code"
+              },
+              {
+                "field": "CURRENCY",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Currency"
+              },
+              {
+                "field": "EMAIL",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Email"
+              },
+              {
+                "field": "FAX",
+                "type": "integer",
+                "mandatory": "1",
+                "description": "Fax"
+              },
+              {
+                "field": "FIRSTNAME",
+                "type": "string",
+                "mandatory": "1",
+                "description": "First name"
+              },
+              {
+                "field": "LASTNAME",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Last name"
+              },
+              {
+                "field": "NOBONUS",
+                "type": "integer",
+                "mandatory": "1",
+                "description": "No bonus"
+              },
+              {
+                "field": "OCCUPATION",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Occupation"
+              },
+              {
+                "field": "PHONE",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Phone number"
+              },
+              {
+                "field": "SEX",
+                "type": "string",
+                "mandatory": "1",
+                "values": [
+                  "M",
+                  "F"
+                ],
+                "description": "Sex"
+              },
+              {
+                "field": "STATE",
+                "type": "string",
+                "mandatory": "1",
+                "description": "State"
+              },
+              {
+                "field": "VIPLEVEL",
+                "type": "integer",
+                "mandatory": "1",
+                "description": "VIP level"
+              },
+              {
+                "field": "WANTMAIL",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Want mail"
+              },
+              {
+                "field": "ZIP",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Zip code"
+              },
+              {
+                "field": "ADVERTISER",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Advertiser"
+              },
+              {
+                "field": "BANNERID",
+                "type": "integer",
+                "mandatory": "1",
+                "description": "Banner ID"
+              },
+              {
+                "field": "CLIENTTYPE",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Client type"
+              },
+              {
+                "field": "CREFERER",
+                "type": "array",
+                "mandatory": "1",
+                "description": "Creferer"
+              },
+              {
+                "field": "TRACKINGID",
+                "type": "string",
+                "mandatory": "1",
+                "description": "TrackingID"
+              },
+              {
+                "field": "LANGUAGECODE",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Language code"
+              },
+              {
+                "field": "SERIAL",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Serial number"
+              },
+              {
+                "field": "SIGNUPDATE",
+                "type": "date",
+                "mandatory": "1",
+                "description": "Date of sign up"
+              },
+              {
+                "field": "SIGNUPCLIENTVERSION",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Sign up client version"
+              },
+              {
+                "field": "PASSWORD",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Player password"
+              },
+              {
+                "field": "FROZEN",
+                "type": "integer",
+                "mandatory": "1",
+                "values": [
+                  0,
+                  1
+                ],
+                "description": "Frozen"
+              },
+              {
+                "field": "CLIENTSKIN",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Client skin"
+              },
+              {
+                "field": "SIGNUPCLIENTPLATFORM",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Sign up client platform"
+              },
+              {
+                "field": "INTERNAL",
+                "type": "integer",
+                "mandatory": "1",
+                "values": [
+                  0,
+                  1
+                ],
+                "description": "Is internal player"
+              },
+              {
+                "field": "SUSPENDED",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Suspended"
+              },
+              {
+                "field": "FULLFIRSTNAME",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Full First name"
+              },
+              {
+                "field": "FULLFIRSTSURNAME",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Full First surname"
+              },
+              {
+                "field": "FULLSECONDSURNAME",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Full Second surname"
+              },
+              {
+                "field": "TAXRESIDENCEREGION",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Tax residence region"
+              },
+              {
+                "field": "CODE",
+                "type": "integer",
+                "mandatory": "1",
+                "description": "Player code"
+              },
+              {
+                "field": "BALANCE",
+                "type": "float",
+                "mandatory": "1",
+                "description": "Player balance"
+              },
+              {
+                "field": "MAXBALANCE",
+                "type": "float",
+                "mandatory": "1",
+                "description": "Max player balance"
+              },
+              {
+                "field": "RESERVEDBALANCE",
+                "type": "float",
+                "mandatory": "1",
+                "description": "Reserved player balance"
+              },
+              {
+                "field": "CURRENTBET",
+                "type": "integer",
+                "mandatory": "1",
+                "description": "Current bet"
+              },
+              {
+                "field": "CURRENTBONUSBET",
+                "type": "integer",
+                "mandatory": "1",
+                "description": "Current bonus bet"
+              },
+              {
+                "field": "PENDINGBONUSBALANCE",
+                "type": "integer",
+                "mandatory": "1",
+                "description": "Pending bonus balance"
+              },
+              {
+                "field": "BONUSBALANCE",
+                "type": "float",
+                "mandatory": "1",
+                "description": "Bonus player balance"
+              },
+              {
+                "field": "COMPPOINTS",
+                "type": "integer",
+                "mandatory": "1",
+                "description": "Player comp points"
+              },
+              {
+                "field": "TOTALCOMPPOINTS",
+                "type": "integer",
+                "mandatory": "1",
+                "description": "Total player comp points"
+              },
+              {
+                "field": "KIOSKCODE",
+                "type": "integer",
+                "mandatory": "1",
+                "description": "Kiosk code"
+              },
+              {
+                "field": "KIOSKADMINCODE",
+                "type": "integer",
+                "mandatory": "1",
+                "description": "Kiosk admin code"
+              },
+              {
+                "field": "CASINOCODE",
+                "type": "integer",
+                "mandatory": "1",
+                "description": "Casino code"
+              },
+              {
+                "field": "LOCKEDMINUTES",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Player locked minutes"
+              },
+              {
+                "field": "CURRENCYCODE",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Currency code"
+              },
+              {
+                "field": "CASINONICKNAME",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Casino nickname"
+              },
+              {
+                "NETWORKNICKNAMES": [
+                  {
+                    "field": "networkId",
+                    "type": "integer",
+                    "mandatory": "0",
+                    "description": "Network ID"
+                  },
+                  {
+                    "networkData": [
+                      {
+                        "field": "key",
+                        "type": "integer",
+                        "mandatory": "0",
+                        "description": "Key network data"
+                      },
+                      {
+                        "field": "values",
+                        "type": "string",
+                        "mandatory": "0",
+                        "description": "Value network data"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "field": "ISINGAME",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Is in game"
+              },
+              {
+                "field": "KIOSKNAME",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Kiosk name"
+              },
+              {
+                "field": "KIOSKADMINNAME",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Kiosk admin name"
+              },
+              {
+                "3RDPData": [
+                  {
+                    "field": "custom01",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Custom field value"
+                  },
+                  {
+                    "field": "custom02",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Custom field value"
+                  },
+                  {
+                    "field": "custom03",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Custom field value"
+                  },
+                  {
+                    "field": "custom04",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Custom field value"
+                  },
+                  {
+                    "field": "custom05",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Custom field value"
+                  },
+                  {
+                    "field": "custom06",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Custom field value"
+                  },
+                  {
+                    "field": "custom07",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Custom field value"
+                  },
+                  {
+                    "field": "custom08",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Custom field value"
+                  },
+                  {
+                    "field": "custom09",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Custom field value"
+                  },
+                  {
+                    "field": "custom10",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Custom field value"
+                  },
+                  {
+                    "field": "custom11",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Custom field value"
+                  },
+                  {
+                    "field": "custom12",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Custom field value"
+                  },
+                  {
+                    "field": "custom13",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Custom field value"
+                  },
+                  {
+                    "field": "custom14",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Custom field value"
+                  },
+                  {
+                    "field": "custom15",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Custom field value"
+                  },
+                  {
+                    "field": "custom16",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Custom field value"
+                  },
+                  {
+                    "field": "custom17",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Custom field value"
+                  },
+                  {
+                    "field": "custom18",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Custom field value"
+                  },
+                  {
+                    "field": "custom19",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Custom field value"
+                  },
+                  {
+                    "field": "custom20",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Custom field value"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "create": {
+      "name": "Create player",
+      "description": "To create a new player account",
+      "uri": "baseURI/player/create/",
+      "method": "POST",
+      "params": {
+        "post": [
+          {
+            "name": "playername",
+            "type": "string",
+            "description": "Player's username",
+            "mandatory": "1",
+            "minlength": 2,
+            "maxlength": 32,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "adminname",
+            "type": "string",
+            "description": "Kiosk admin name, who creates player",
+            "mandatory": "1",
+            "minlength": 1,
+            "maxlength": 100,
+            "regex": "/[A-Za-z0-9]+/"
+          },
+          {
+            "name": "kioskname",
+            "type": "string",
+            "description": "Kiosk",
+            "mandatory": "1",
+            "minlength": 1,
+            "maxlength": 100,
+            "regex": "/[A-Za-z0-9.\\/,_-]+/"
+          },
+          {
+            "name": "firstname",
+            "type": "string",
+            "description": "First name",
+            "mandatory": "0",
+            "minlength": 1,
+            "maxlength": 50,
+            "regex": "/[A-Za-z.,-]+/"
+          },
+          {
+            "name": "lastname",
+            "type": "string",
+            "description": "Last name",
+            "mandatory": "0",
+            "minlength": 1,
+            "maxlength": 50,
+            "regex": "/[A-Za-z.,-]+/"
+          },
+          {
+            "name": "countrycode",
+            "type": "string",
+            "description": "Country code",
+            "mandatory": "0",
+            "minlength": 2,
+            "maxlength": 2,
+            "regex": "/[A-Za-z]+/"
+          },
+          {
+            "name": "city",
+            "type": "string",
+            "description": "City",
+            "mandatory": "0",
+            "minlength": 2,
+            "maxlength": 50,
+            "regex": "/[A-Za-z-]+/"
+          },
+          {
+            "name": "address",
+            "type": "string",
+            "description": "Address",
+            "mandatory": "0",
+            "minlength": 2,
+            "maxlength": 160,
+            "regex": "/[A-Za-z0-9./,-\\s]+/"
+          },
+          {
+            "name": "phone",
+            "type": "string",
+            "description": "Phone",
+            "mandatory": "0",
+            "minlength": 4,
+            "maxlength": 20,
+            "regex": "/[0-9].*[0-9].*[0-9].*[0-9]/"
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "description": "Email",
+            "mandatory": "0",
+            "minlength": 1,
+            "maxlength": 100,
+            "regex": "/^([A-Za-z0-9!#$%&*+=?^_`{|}~-]+(.[A-Za-z0-9!#$%&*+=?^_`{|}~-]+)*)@(([a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]|[a-zA-Z0-9]{1,63})(.([a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]|[a-zA-Z0-9]{1,63}))*.[a-zA-Z0-9]{2,63})$/"
+          },
+          {
+            "name": "state",
+            "type": "string",
+            "description": "State",
+            "mandatory": "0",
+            "minlength": 2,
+            "maxlength": 20,
+            "regex": "/[A-Za-z0-9]+/"
+          },
+          {
+            "name": "zip",
+            "type": "string",
+            "description": "Zip code",
+            "mandatory": "0",
+            "minlength": 2,
+            "maxlength": 20,
+            "regex": "/[A-Za-z0-9-_]+/"
+          },
+          {
+            "name": "fax",
+            "type": "string",
+            "description": "Fax",
+            "mandatory": "0",
+            "maxlength": 20,
+            "regex": "/[A-Za-z0-9.+-]+/"
+          },
+          {
+            "name": "comments",
+            "type": "string",
+            "description": "Comments",
+            "mandatory": "0"
+          },
+          {
+            "name": "birthdate",
+            "type": "date",
+            "description": "Birthdate",
+            "mandatory": "0",
+            "regex": "/[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])/"
+          },
+          {
+            "name": "viplevel",
+            "type": "integer",
+            "description": "VIP level. If allowed for kioskadmin who create player.",
+            "mandatory": "0"
+          },
+          {
+            "name": "languagecode",
+            "type": "string",
+            "description": "Language code.",
+            "mandatory": "0",
+            "minlength": 2,
+            "maxlength": 5,
+            "regex": "/[A-Za-z-]+/"
+          },
+          {
+            "name": "sex",
+            "type": "integer",
+            "description": "Sex",
+            "mandatory": "0",
+            "values": [
+              "M",
+              "F"
+            ]
+          },
+          {
+            "name": "password",
+            "type": "string",
+            "description": "Password",
+            "mandatory": "0"
+          },
+          {
+            "name": "nickname",
+            "type": "string",
+            "description": "Nickname",
+            "mandatory": "0"
+          },
+          {
+            "name": "custom02",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom03",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 10,
+            "regex": "/^[0-9]{8}.[0-9]{2}$/"
+          },
+          {
+            "name": "custom04",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 10,
+            "regex": "/^[0-9]{8}.[0-9]{2}$/"
+          },
+          {
+            "name": "custom05",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom06",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom07",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 20,
+            "regex": "/^[0-9]{20}.[0-9]{2}$/"
+          },
+          {
+            "name": "custom08",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 20,
+            "regex": "/^[0-9]{20}.[0-9]{2}$/"
+          },
+          {
+            "name": "custom09",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom10",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom11",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom12",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom13",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom14",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom15",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom16",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom17",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom18",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom19",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom20",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "3RDPContainer",
+            "type": "json",
+            "description": "Json encoded array of 3RDP container. A list of attributes that can be set have a range custom02..custom20. Example used the parameter, 3RDPContainer={\"custom01\":\"custom01 field value\",\"custom02\":\"custom02 field value\"}",
+            "mandatory": "0"
+          },
+          {
+            "name": "trackingid",
+            "type": "string",
+            "description": "TrackingID field",
+            "mandatory": "0",
+            "maxlength": 100,
+            "regex": "/[^(\\;|\\:)]+/"
+          }
+        ]
+      },
+      "example": {
+        "success": [
+          {
+            "request": "baseURI/player/create/playername/zeltestplayer/adminname/zelnorth/kioskname/north/firstname/test/lastname/test/3RDPContainer/{\"custom01\":\"custom01 field value\",\"custom03\":\"custom03 field value\"}/",
+            "response": "{\"result\":{\"result\":\"New player has been created\",\"playername\":\"ZELTESTPLAYER\",\"password\":\"macwon62\"}}"
+          }
+        ],
+        "error": [
+          {
+            "request": "baseURI/player/create/playername/someverylongplayernamewhichisnotallowed/adminname/zelnorth/kioskname/north/firstname/test/lastname/test",
+            "response": "{\"error\":\"Player name is incorrect or player already exists in system\",\"errorcode\":42}"
+          }
+        ]
+      },
+      "errorresponse": {
+        "responsedata": [
+          {
+            "field": "error",
+            "type": "string",
+            "mandatory": "1",
+            "description": "Error message"
+          },
+          {
+            "field": "errorcode",
+            "type": "integer",
+            "mandatory": "1",
+            "description": "Error code"
+          }
+        ],
+        "errors": [
+          {
+            "code": 10,
+            "description": "Playername not specified"
+          },
+          {
+            "code": 11,
+            "description": "Casino name not specified"
+          },
+          {
+            "code": 12,
+            "description": "Kiosk admin, kiosk and casino have to be related"
+          },
+          {
+            "code": 14,
+            "description": "Kiosk admin name have to be present"
+          },
+          {
+            "code": 15,
+            "description": "Kiosk name have to be present"
+          },
+          {
+            "code": 19,
+            "description": "The username you requested is already being used by another player."
+          },
+          {
+            "code": 21,
+            "description": "Kiosk is not allowed for the admin"
+          },
+          {
+            "code": 22,
+            "description": "Nickname is not set"
+          },
+          {
+            "code": 23,
+            "description": "Inappropriate casino nickname. Please choose another nickname."
+          },
+          {
+            "code": 24,
+            "description": "This nickname is currently being used by another player. Enter a different nickname and try again"
+          },
+          {
+            "code": 25,
+            "description": "Player is online and the Casino nickname is not changeable"
+          },
+          {
+            "code": 26,
+            "description": "Player is offline but is registered to a tournament or still taking part of an ongoing trournament"
+          },
+          {
+            "code": 27,
+            "description": "Technical error. Could not update player Casino nickname."
+          },
+          {
+            "code": 28,
+            "description": "You entered the incorrect format of the birth date"
+          },
+          {
+            "code": 29,
+            "description": "Entered the wrong request format of '3RDPContainer'"
+          },
+          {
+            "code": 30,
+            "description": "Entered the wrong request format of 'playername'"
+          },
+          {
+            "code": 41,
+            "description": "Player does not exist"
+          },
+          {
+            "code": 42,
+            "description": "Player username in invalid format. Prefix not valid. Valid prefix is: ['player username prefix']"
+          },
+          {
+            "code": 45,
+            "description": "Player language code is restricted for TLE"
+          },
+          {
+            "code": 47,
+            "description": "Action is not allowed"
+          },
+          {
+            "code": 48,
+            "description": "Kiosk admin does not belong to TLE"
+          },
+          {
+            "code": 50,
+            "description": "Player password is too short"
+          },
+          {
+            "code": 51,
+            "description": "Player password is too long"
+          },
+          {
+            "code": 71,
+            "description": "Could not load player data. Error: 'UMS API return error on access request attempt'"
+          },
+          {
+            "code": 72,
+            "description": "Cannot create player, web api error ( errorCode:'error_code', errorText:'error_text')"
+          },
+          {
+            "code": 73,
+            "description": "Could not load player data from database. Error: 'Database error occured, please contact support'. Please, try again later"
+          },
+          {
+            "code": 75,
+            "description": "Attribute 'attribute name' does not exist. Please enter the correct request"
+          },
+          {
+            "code": 76,
+            "description": "Entered the wrong request format"
+          },
+          {
+            "code": 108,
+            "description": "Admin is frozen"
+          },
+          {
+            "code": 114,
+            "description": "Business entity not found"
+          },
+          {
+            "code": 130,
+            "description": "Kiosk not found"
+          },
+          {
+            "code": 133,
+            "description": "Kiosk admin not found"
+          },
+          {
+            "code": 140,
+            "description": "Form validation errors"
+          }
+        ]
+      },
+      "successresponse": {
+        "responsetype": "application/json",
+        "responsedata": [
+          {
+            "result": [
+              {
+                "field": "result",
+                "type": "string",
+                "mandatory": "1",
+                "values": "New player has been created"
+              },
+              {
+                "field": "playername",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Player's username"
+              },
+              {
+                "field": "password",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Player's password"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "masscreate": {
+      "name": "Mass create players",
+      "description": "To create a mass volume of players",
+      "uri": "baseURI/player/massCreate/",
+      "method": "POST",
+      "params": {
+        "post": [
+          {
+            "name": "depositowner",
+            "type": "string",
+            "description": "Admin username for deposit",
+            "mandatory": "0",
+            "minlength": 1,
+            "maxlength": 15,
+            "regex": "/[A-Za-z0-9]+/"
+          },
+          {
+            "name": "params",
+            "type": "json",
+            "description": "An array of parameters. You can see the list of params in the table \"Input params at the array of parameters\"",
+            "mandatory": "1"
+          }
+        ],
+        "array": [
+          {
+            "name": "playername",
+            "type": "string",
+            "description": "Player username",
+            "mandatory": "1",
+            "minlength": 2,
+            "maxlength": 32,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "kioskname",
+            "type": "string",
+            "description": "Kiosk name",
+            "mandatory": "1",
+            "minlength": 1,
+            "maxlength": 100,
+            "regex": "/[A-Za-z0-9.\\/,_-]+/"
+          },
+          {
+            "name": "adminname",
+            "type": "string",
+            "description": "Kiosk admin name",
+            "mandatory": "1",
+            "minlength": 1,
+            "maxlength": 100,
+            "regex": "/[A-Za-z0-9]+/"
+          },
+          {
+            "name": "firstname",
+            "type": "string",
+            "description": "First name",
+            "mandatory": "0",
+            "minlength": 1,
+            "maxlength": 50,
+            "regex": "/[A-Za-z.,-]+/"
+          },
+          {
+            "name": "lastname",
+            "type": "string",
+            "description": "Last name",
+            "mandatory": "0",
+            "minlength": 1,
+            "maxlength": 50,
+            "regex": "/[A-Za-z.,-]+/"
+          },
+          {
+            "name": "countrycode",
+            "type": "string",
+            "description": "Country code",
+            "mandatory": "0",
+            "minlength": 2,
+            "maxlength": 2,
+            "regex": "/[A-Za-z]+/"
+          },
+          {
+            "name": "city",
+            "type": "string",
+            "description": "City",
+            "mandatory": "0",
+            "minlength": 2,
+            "maxlength": 50,
+            "regex": "/[A-Za-z-]+/"
+          },
+          {
+            "name": "address",
+            "type": "string",
+            "description": "Address",
+            "mandatory": "0",
+            "minlength": 2,
+            "maxlength": 160,
+            "regex": "/[A-Za-z0-9./,-\\s]+/"
+          },
+          {
+            "name": "phone",
+            "type": "string",
+            "description": "Phone",
+            "mandatory": "0",
+            "minlength": 4,
+            "maxlength": 20,
+            "regex": "/[0-9].*[0-9].*[0-9].*[0-9]/"
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "description": "Email",
+            "mandatory": "0",
+            "minlength": 1,
+            "maxlength": 100,
+            "regex": "/^([A-Za-z0-9!#$%&*+=?^_`{|}~-]+(.[A-Za-z0-9!#$%&*+=?^_`{|}~-]+)*)@(([a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]|[a-zA-Z0-9]{1,63})(.([a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]|[a-zA-Z0-9]{1,63}))*.[a-zA-Z0-9]{2,63})$/"
+          },
+          {
+            "name": "state",
+            "type": "string",
+            "description": "State",
+            "mandatory": "0",
+            "minlength": 2,
+            "maxlength": 20,
+            "regex": "/[A-Za-z0-9]+/"
+          },
+          {
+            "name": "zip",
+            "type": "string",
+            "description": "Zip code",
+            "mandatory": "0",
+            "minlength": 2,
+            "maxlength": 20,
+            "regex": "/[A-Za-z0-9-_]+/"
+          },
+          {
+            "name": "fax",
+            "type": "string",
+            "description": "Fax",
+            "mandatory": "0",
+            "maxlength": 20,
+            "regex": "/[A-Za-z0-9.+-]+/"
+          },
+          {
+            "name": "comments",
+            "type": "string",
+            "description": "Comments",
+            "mandatory": "0"
+          },
+          {
+            "name": "birthdate",
+            "type": "date",
+            "description": "Birthdate",
+            "mandatory": "0",
+            "regex": "/[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])/"
+          },
+          {
+            "name": "viplevel",
+            "type": "integer",
+            "description": "VIP level. If allowed for kioskadmin who create player.",
+            "mandatory": "0"
+          },
+          {
+            "name": "languagecode",
+            "type": "string",
+            "description": "Language code.",
+            "mandatory": "0",
+            "minlength": 2,
+            "maxlength": 5,
+            "regex": "/[A-Za-z-]+/"
+          },
+          {
+            "name": "sex",
+            "type": "integer",
+            "description": "Sex",
+            "mandatory": "0",
+            "values": [
+              "M",
+              "F"
+            ]
+          },
+          {
+            "name": "password",
+            "type": "string",
+            "description": "Password",
+            "mandatory": "0"
+          },
+          {
+            "name": "deposit",
+            "type": "integer",
+            "description": "Deposit",
+            "mandatory": "0",
+            "regex": "/^[0-9]+[.|,]*[0-9]+$/"
+          },
+          {
+            "name": "3RDPContainer",
+            "type": "json",
+            "description": "Json encoded array of 3RDP container. A list of attributes that can be set have a range custom01..custom20. Example used the parameter, 3RDPContainer={\"custom01\":\"custom01 field value\",\"custom02\":\"custom02 field value\"}",
+            "mandatory": "0"
+          },
+          {
+            "name": "trackingid",
+            "type": "string",
+            "description": "TrackingID field",
+            "mandatory": "0",
+            "maxlength": 100,
+            "regex": "/[^(\\;|\\:)]+/"
+          }
+        ]
+      },
+      "example": {
+        "success": [
+          {
+            "request": "baseURI/player/massCreate/?params=[{\"playername\":\"BEZ_PL_TEST13\",\"adminname\":\"bez1\",\"kioskname\":\"bez_kiosk1\",\"deposit\":10,\"3RDPContainer\":{\"custom01\":\"custom01 field value\",\"custom03\":\"custom03 field value\"}},{\"playername\":\"BEZ_PL_TEST14\",\"adminname\":\"bez1\",\"kioskname\":\"bez_kiosk1\",\"deposit\":10},{\"playername\":\"BEZ_PL_TEST15\",\"adminname\":\"bez1\",\"kioskname\":\"bez_kiosk1\",\"deposit\":10}]",
+            "response": "{\"result\":[{\"playername\":\"BEZ_PL_TEST13\",\"create\":{\"error\":\"The username you requested is already being used by another player.\",\"errorcode\":42}},{\"playername\":\"BEZ_PL_TEST14\",\"create\":{\"result\":\"Create OK\",\"password\":\"pawunjwn\"},\"deposit\":{\"result\":\"Deposit OK\",\"amount\":10,\"kiosktransactiontime\":\"2014-06-24 16:31:07\",\"kiosktransactionid\":\"3273\",\"ptinternaltransactionid\":\"16587521\",\"instantcashtype\":\"local\",\"executiontime\":\"1112.7141 ms\",\"currentplayerbalance\":\"10\"}},{\"playername\":\"BEZ_PL_TEST15\",\"create\":{\"result\":\"Create OK\",\"password\":\"nrhyvgqk\"},\"deposit\":{\"error\":\"API error\",\"errorcode\":301}}]}"
+          }
+        ],
+        "error": [
+          {
+            "request": "baseURI/player/massCreate/?params=[{\"playername\":\"BEZ_PLAYER_DEP_TEST\",\"adminname\":\"bez1\",\"kioskname\":\"bez_kiosk1\",\"deposit\":10}]",
+            "response": "{\"error\":\"Players params not specified\",\"errorcode\":168}"
+          }
+        ]
+      },
+      "errorresponse": {
+        "responsedata": [
+          {
+            "field": "error",
+            "type": "string",
+            "mandatory": "0",
+            "description": "Error message"
+          },
+          {
+            "field": "errorcode",
+            "type": "integer",
+            "mandatory": "0",
+            "description": "Error code"
+          }
+        ],
+        "errors": [
+          {
+            "code": 11,
+            "description": "Casino name not specified"
+          },
+          {
+            "code": 12,
+            "description": "Kiosk is not allowed for the admin"
+          },
+          {
+            "code": 14,
+            "description": "Kiosk admin name have to be present"
+          },
+          {
+            "code": 15,
+            "description": "Kiosk name have to be present"
+          },
+          {
+            "code": 18,
+            "description": "The possible values of the deposit amount can be only numbers"
+          },
+          {
+            "code": 19,
+            "description": "The username you requested is already being used by another player."
+          },
+          {
+            "code": 22,
+            "description": "Nickname is not set"
+          },
+          {
+            "code": 23,
+            "description": "Inappropriate casino nickname. Please choose another nickname."
+          },
+          {
+            "code": 24,
+            "description": "This nickname is currently being used by another player. Enter a different nickname and try again"
+          },
+          {
+            "code": 25,
+            "description": "Player is online and the Casino nickname is not changeable"
+          },
+          {
+            "code": 26,
+            "description": "Player is offline but is registered to a tournament or still taking part of an ongoing trournament"
+          },
+          {
+            "code": 27,
+            "description": "Technical error. Could not update player Casino nickname."
+          },
+          {
+            "code": 28,
+            "description": "You entered the incorrect format of the birth date"
+          },
+          {
+            "code": 29,
+            "description": "Entered the wrong request format of '3RDPContainer'"
+          },
+          {
+            "code": 30,
+            "description": "Entered the wrong request format of 'playername'"
+          },
+          {
+            "code": 41,
+            "description": "Player does not exist"
+          },
+          {
+            "code": 42,
+            "description": "Player username in invalid format. Prefix not valid. Valid prefix is: ['player username prefix']"
+          },
+          {
+            "code": 44,
+            "description": "Player is frozen"
+          },
+          {
+            "code": 45,
+            "description": "Language code is restricted for TLE"
+          },
+          {
+            "code": 46,
+            "description": "Player has waiting withdraw requests"
+          },
+          {
+            "code": 47,
+            "description": "Action is not allowed"
+          },
+          {
+            "code": 48,
+            "description": "Deposit owner is not allowed for the Entity #'entity_id'"
+          },
+          {
+            "code": 50,
+            "description": "Player password is too short"
+          },
+          {
+            "code": 51,
+            "description": "Player password is too long"
+          },
+          {
+            "code": 71,
+            "description": "Could not load player data. Error: 'UMS API return error on access request attempt'"
+          },
+          {
+            "code": 72,
+            "description": "Cannot create player, web api error ( errorCode:'error code', errorText:'error message')"
+          },
+          {
+            "code": 73,
+            "description": "Could not load player data from database. Error: 'Database error occured, please contact support'. Please, try again later"
+          },
+          {
+            "code": 75,
+            "description": "Attribute 'attribute name' does not exist. Please enter the correct request"
+          },
+          {
+            "code": 76,
+            "description": "Entered the wrong request format"
+          },
+          {
+            "code": 92,
+            "description": "Deposit not allowed"
+          },
+          {
+            "code": 93,
+            "description": "Cannot make deposit. Amount is less than minimum deposit amount for this player."
+          },
+          {
+            "code": 94,
+            "description": "Cannot make deposit. Amount exeeds maximum deposit limit for this player. "
+          },
+          {
+            "code": 95,
+            "description": "Casino not open"
+          },
+          {
+            "code": 108,
+            "description": "Admin is frozen"
+          },
+          {
+            "code": 109,
+            "description": "Admin internal state mismatch with player internal state"
+          },
+          {
+            "code": 114,
+            "description": "Business entity not found"
+          },
+          {
+            "code": 130,
+            "description": "Kiosk not found"
+          },
+          {
+            "code": 133,
+            "description": "Deposit owner not found"
+          },
+          {
+            "code": 140,
+            "description": "Form validation errors"
+          },
+          {
+            "code": 168,
+            "description": "Players parameters not specified"
+          },
+          {
+            "code": 301,
+            "description": "API error."
+          },
+          {
+            "code": 302,
+            "description": "Extrernal transaction id already exists"
+          }
+        ]
+      },
+      "successresponse": {
+        "responsetype": "application/json",
+        "responsedata": [
+          {
+            "result": [
+              {
+                "field": "playername",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Player's username"
+              },
+              {
+                "create": [
+                  {
+                    "field": "result",
+                    "type": "string",
+                    "mandatory": "0",
+                    "values": "Create OK"
+                  },
+                  {
+                    "field": "password",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Player's password"
+                  },
+                  {
+                    "field": "error",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Error message"
+                  },
+                  {
+                    "field": "errorcode",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Error code"
+                  }
+                ]
+              },
+              {
+                "deposit": [
+                  {
+                    "field": "result",
+                    "type": "string",
+                    "mandatory": "0",
+                    "values": [
+                      "No deposit",
+                      "Deposit OK"
+                    ]
+                  },
+                  {
+                    "field": "amount",
+                    "type": "integer",
+                    "mandatory": "0",
+                    "description": "Deposit amount"
+                  },
+                  {
+                    "field": "kiosktransactiontime",
+                    "type": "date",
+                    "mandatory": "0",
+                    "description": "Transaction time"
+                  },
+                  {
+                    "field": "kiosktransactionid",
+                    "type": "integer",
+                    "mandatory": "0",
+                    "description": "Transaction ID"
+                  },
+                  {
+                    "field": "ptinternaltransactionid",
+                    "type": "integer",
+                    "mandatory": "0",
+                    "description": "Internal transaction ID"
+                  },
+                  {
+                    "field": "instantcashtype",
+                    "type": "string",
+                    "mandatory": "0",
+                    "values": [
+                      "local",
+                      "api"
+                    ]
+                  },
+                  {
+                    "field": "executiontime",
+                    "type": "date",
+                    "mandatory": "0",
+                    "description": "Execution time in millisecond"
+                  },
+                  {
+                    "field": "currentplayerbalance",
+                    "type": "integer",
+                    "mandatory": "0",
+                    "description": "Current balance"
+                  },
+                  {
+                    "field": "error",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Error message"
+                  },
+                  {
+                    "field": "errorcode",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Error code"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "massfreeze": {
+      "name": "Mass freeze players",
+      "description": "To freeze a mass volume of players",
+      "uri": "baseURI/player/massFreeze/",
+      "method": "POST",
+      "params": {
+        "post": [
+          {
+            "name": "isFreeze",
+            "type": "string",
+            "description": "isFreeze:| 1 - freeze players;| 0 - unfreeze players",
+            "mandatory": "1",
+            "values": [
+              "0",
+              "1"
+            ]
+          },
+          {
+            "name": "depositowner",
+            "type": "string",
+            "description": "Admin username for deposit",
+            "mandatory": "1",
+            "minlength": 1,
+            "maxlength": 15,
+            "regex": "/[A-Za-z0-9]+/"
+          },
+          {
+            "name": "isWithdraw",
+            "type": "string",
+            "description": "isWithdraw:| 1 - withdraw players' credit;| 0 - do not withdraw players' credits",
+            "mandatory": "0",
+            "values": [
+              "0",
+              "1"
+            ]
+          },
+          {
+            "name": "params",
+            "type": "json",
+            "description": "An array of parameters. You can see the list of params in the table \"Input params at the array of parameters\"",
+            "mandatory": "1"
+          }
+        ],
+        "array": [
+          {
+            "name": "playername",
+            "type": "string",
+            "description": "Player username",
+            "mandatory": "1",
+            "minlength": 2,
+            "maxlength": 32,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          }
+        ]
+      },
+      "example": {
+        "success": [
+          {
+            "request": "baseURI/player/massFreeze/isFreeze/1/isWithdraw/1/depositowner/bez1/params/[{\"playername\":\"BEZ_PL_TEST3\"},{\"playername\":\"BEZ_PL_TEST4\"}]",
+            "response": "{\"result\":[{\"playername\":\"BEZ_PL_TEST3\",\"withdraw\":{\"error\":\"Can't make cashout on player's zero balance.\",\"errorcode\":0},\"freeze\":{\"result\":\"success\"}},{\"playername\":\"BEZ_PL_TEST4\",\"withdraw\":{\"result\":\"Withdraw OK\",\"amount\":\"10\",\"kiosktransactiontime\":\"2014-06-24 17:27:11\",\"kiosktransactionid\":\"3277\",\"ptinternaltransactionid\":\"16587561\",\"instantcashtype\":\"local\",\"executiontime\":\"920.789 ms\",\"currentplayerbalance\":0},\"freeze\":{\"result\":\"success\"}}]}"
+          }
+        ],
+        "error": [
+          {
+            "request": "baseURI/player/massFreeze/1/isWithdraw/1/depositowner/bez1/params/[{\"playername\":\"BEZ_PL_TEST3\"},{\"playername\":\"BEZ_PL_TEST4\"}]",
+            "response": "{\"error\":\"Frozen value not specified\",\"errorcode\":169}"
+          }
+        ]
+      },
+      "errorresponse": {
+        "responsedata": [
+          {
+            "field": "error",
+            "type": "string",
+            "mandatory": "0",
+            "description": "Error message"
+          },
+          {
+            "field": "errorcode",
+            "type": "integer",
+            "mandatory": "0",
+            "description": "Error code"
+          }
+        ],
+        "errors": [
+          {
+            "code": 11,
+            "description": "Casino name not specified"
+          },
+          {
+            "code": 15,
+            "description": "Kiosk not set"
+          },
+          {
+            "code": 41,
+            "description": "Player does not exist"
+          },
+          {
+            "code": 44,
+            "description": "Player is frozen"
+          },
+          {
+            "code": 47,
+            "description": "Action is not allowed"
+          },
+          {
+            "code": 48,
+            "description": "Deposit owner is not allowed for the Entity"
+          },
+          {
+            "code": 71,
+            "description": "Could not load player data. Error: 'UMS API return error on access request attempt'"
+          },
+          {
+            "code": 72,
+            "description": "Could not load player data. Error: 'Service error accessing UMS API'"
+          },
+          {
+            "code": 73,
+            "description": "Could not load player data from database. Error: 'Database error occured, please contact support'. Please, try again later"
+          },
+          {
+            "code": 98,
+            "description": "InstantCash amount 'amount' is greater than balance"
+          },
+          {
+            "code": 99,
+            "description": "Player is in game"
+          },
+          {
+            "code": 101,
+            "description": "Bonus declined on withdraw"
+          },
+          {
+            "code": 102,
+            "description": "Cannot make cashout. No permissions."
+          },
+          {
+            "code": 103,
+            "description": "Amount is below minimum allowed cashout amount"
+          },
+          {
+            "code": 104,
+            "description": "Amount is over maximum allowed cashout amount"
+          },
+          {
+            "code": 105,
+            "description": "Withdraw operations is not allowed"
+          },
+          {
+            "code": 108,
+            "description": "Admin is frozen"
+          },
+          {
+            "code": 109,
+            "description": "Admin internal state mismatch with player internal state"
+          },
+          {
+            "code": 133,
+            "description": "Deposit owner does not found"
+          },
+          {
+            "code": 167,
+            "description": "isInGame() failed 'error message'"
+          },
+          {
+            "code": 168,
+            "description": "Players parameters not specified"
+          },
+          {
+            "code": 169,
+            "description": "Frozen value not specified"
+          },
+          {
+            "code": 301,
+            "description": "API error."
+          },
+          {
+            "code": 302,
+            "description": "Extrernal transaction id already exists"
+          }
+        ]
+      },
+      "successresponse": {
+        "responsetype": "application/json",
+        "responsedata": [
+          {
+            "result": [
+              {
+                "field": "playername",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Player's username"
+              },
+              {
+                "withdraw": [
+                  {
+                    "field": "result",
+                    "type": "string",
+                    "mandatory": "0",
+                    "values": "Withdraw OK"
+                  },
+                  {
+                    "field": "amount",
+                    "type": "integer",
+                    "mandatory": "0",
+                    "description": "Deposit amount"
+                  },
+                  {
+                    "field": "kiosktransactiontime",
+                    "type": "date",
+                    "mandatory": "0",
+                    "description": "Transaction time"
+                  },
+                  {
+                    "field": "kiosktransactionid",
+                    "type": "integer",
+                    "mandatory": "0",
+                    "description": "Transaction ID"
+                  },
+                  {
+                    "field": "ptinternaltransactionid",
+                    "type": "integer",
+                    "mandatory": "0",
+                    "description": "Internal transaction ID"
+                  },
+                  {
+                    "field": "instantcashtype",
+                    "type": "string",
+                    "mandatory": "0",
+                    "values": [
+                      "local",
+                      "api"
+                    ]
+                  },
+                  {
+                    "field": "executiontime",
+                    "type": "date",
+                    "mandatory": "0",
+                    "description": "Execution time in millisecond"
+                  },
+                  {
+                    "field": "currentplayerbalance",
+                    "type": "integer",
+                    "mandatory": "0",
+                    "description": "Current balance"
+                  },
+                  {
+                    "field": "error",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Error message"
+                  },
+                  {
+                    "field": "errorcode",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Error code"
+                  }
+                ]
+              },
+              {
+                "freeze": [
+                  {
+                    "field": "result",
+                    "type": "string",
+                    "mandatory": "0",
+                    "values": "success"
+                  },
+                  {
+                    "field": "error",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Error message"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "massdeposit": {
+      "name": "Mass deposit players",
+      "description": "To deposit credits to a mass volume of players",
+      "uri": "baseURI/player/massDeposit/",
+      "method": "POST",
+      "params": {
+        "post": [
+          {
+            "name": "depositowner",
+            "type": "string",
+            "description": "Admin username to get player's balance",
+            "mandatory": "1",
+            "minlength": 1,
+            "maxlength": 15,
+            "regex": "/[A-Za-z0-9]+/"
+          },
+          {
+            "name": "params",
+            "type": "json",
+            "description": "An array of parameters. You can see the list of params in the table \"Input params at the array of parameters\"",
+            "mandatory": "1"
+          }
+        ],
+        "array": [
+          {
+            "name": "playername",
+            "type": "string",
+            "description": "Player username ",
+            "mandatory": "1",
+            "minlength": 2,
+            "maxlength": 32,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "amount",
+            "type": "float",
+            "description": "Amount",
+            "mandatory": "1",
+            "regex": "/^[0-9]+[.|,]*[0-9]+$/"
+          }
+        ]
+      },
+      "example": {
+        "success": [
+          {
+            "request": "baseURI/player/massDeposit/depositowner/bez1?params=[{\"playername\":\"player01\",\"amount\":1},{\"playername\":\"BEZ_PLAYER1\",\"amount\":1}]",
+            "response": "{\"result\":[{\"playername\":\"player01\",\"deposit\":{\"error\":\"Player is not allowed for the TLE\",\"errorcode\":49}},{\"playername\":\"BEZ_PLAYER1\",\"deposit\":{\"result\":\"Deposit OK\",\"amount\":1,\"kiosktransactiontime\":\"2014-06-24 17:56:51\",\"kiosktransactionid\":\"3278\",\"ptinternaltransactionid\":\"16587571\",\"instantcashtype\":\"local\",\"executiontime\":\"543.9682 ms\",\"currentplayerbalance\":\"10\"}}]}"
+          }
+        ],
+        "error": [
+          {
+            "request": "baseURI/player/massDeposit/depositowner/bez1?param=[{\"playername\":\"\",\"amount\":1},{\"playername\":\"BEZ_PLAYER1\"}]",
+            "response": "{\"error\":\"Players params not specified\",\"errorcode\":168}"
+          }
+        ]
+      },
+      "errorresponse": {
+        "responsedata": [
+          {
+            "field": "error",
+            "type": "string",
+            "mandatory": "0",
+            "description": "Error message"
+          },
+          {
+            "field": "errorcode",
+            "type": "integer",
+            "mandatory": "0",
+            "description": "Error code"
+          }
+        ],
+        "errors": [
+          {
+            "code": 10,
+            "description": "Playername not specified"
+          },
+          {
+            "code": 11,
+            "description": "Casino name not specified"
+          },
+          {
+            "code": 18,
+            "description": "The possible values of the deposit amount can be only numbers"
+          },
+          {
+            "code": 41,
+            "description": "Player does not exist"
+          },
+          {
+            "code": 43,
+            "description": "Player does not belong to kiosk"
+          },
+          {
+            "code": 44,
+            "description": "Player is frozen"
+          },
+          {
+            "code": 45,
+            "description": "Language code is restricted for TLE"
+          },
+          {
+            "code": 46,
+            "description": "Player has waiting withdraw requests"
+          },
+          {
+            "code": 47,
+            "description": "Action is not allowed"
+          },
+          {
+            "code": 48,
+            "description": "Deposit owner is not allowed for the Entity"
+          },
+          {
+            "code": 49,
+            "description": "Player is not allowed for the TLE"
+          },
+          {
+            "code": 71,
+            "description": "Could not load player data. Error: 'UMS API return error on access request attempt'"
+          },
+          {
+            "code": 72,
+            "description": "Could not load player data. Error: 'Service error accessing UMS API'"
+          },
+          {
+            "code": 73,
+            "description": "Could not load player data from database. Error: 'Database error occured, please contact support'. Please, try again later"
+          },
+          {
+            "code": 75,
+            "description": "Attribute 'attribute name' does not exist. Please enter the correct request"
+          },
+          {
+            "code": 92,
+            "description": "Deposit not allowed"
+          },
+          {
+            "code": 93,
+            "description": "Cannot make deposit. Amount is less than minimum deposit amount for this player."
+          },
+          {
+            "code": 94,
+            "description": "Cannot make deposit. Exeeds maximum deposit limit for this player."
+          },
+          {
+            "code": 95,
+            "description": "Casino not open"
+          },
+          {
+            "code": 96,
+            "description": "Cannot make deposit. Your deposit limit for period is excided"
+          },
+          {
+            "code": 97,
+            "description": "Kioskadmin deposit balance insufficient."
+          },
+          {
+            "code": 106,
+            "description": "Kioskadmin deposit balance update failed."
+          },
+          {
+            "code": 108,
+            "description": "Admin is frozen"
+          },
+          {
+            "code": 109,
+            "description": "Admin internal state mismatch with player internal state"
+          },
+          {
+            "code": 133,
+            "description": "Deposit owner does not found"
+          },
+          {
+            "code": 142,
+            "description": "Amount not specified"
+          },
+          {
+            "code": 148,
+            "description": "Koisk admin code is not valid"
+          },
+          {
+            "code": 168,
+            "description": "Players params not specified"
+          },
+          {
+            "code": 170,
+            "description": "Deposit error"
+          },
+          {
+            "code": 301,
+            "description": "API error."
+          },
+          {
+            "code": 302,
+            "description": "External transaction id already exists"
+          }
+        ]
+      },
+      "successresponse": {
+        "responsetype": "application/json",
+        "responsedata": [
+          {
+            "result": [
+              {
+                "field": "playername",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Player's username"
+              },
+              {
+                "deposit": [
+                  {
+                    "field": "result",
+                    "type": "string",
+                    "mandatory": "0",
+                    "values": "Deposit OK"
+                  },
+                  {
+                    "field": "amount",
+                    "type": "integer",
+                    "mandatory": "0",
+                    "description": "Deposit amount"
+                  },
+                  {
+                    "field": "kiosktransactiontime",
+                    "type": "date",
+                    "mandatory": "0",
+                    "description": "Transaction time"
+                  },
+                  {
+                    "field": "kiosktransactionid",
+                    "type": "integer",
+                    "mandatory": "0",
+                    "description": "Transaction ID"
+                  },
+                  {
+                    "field": "ptinternaltransactionid",
+                    "type": "integer",
+                    "mandatory": "0",
+                    "description": "Internal transaction ID"
+                  },
+                  {
+                    "field": "instantcashtype",
+                    "type": "string",
+                    "mandatory": "0",
+                    "values": [
+                      "local",
+                      "api"
+                    ]
+                  },
+                  {
+                    "field": "executiontime",
+                    "type": "date",
+                    "mandatory": "0",
+                    "description": "Execution time in millisecond"
+                  },
+                  {
+                    "field": "currentplayerbalance",
+                    "type": "integer",
+                    "mandatory": "0",
+                    "description": "Current balance"
+                  },
+                  {
+                    "field": "error",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Error message"
+                  },
+                  {
+                    "field": "errorcode",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Error code"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "masswithdraw": {
+      "name": "Mass withdraw players",
+      "description": "To withdraw credits from a mass volume of players",
+      "uri": "baseURI/player/massWithdraw/",
+      "method": "POST",
+      "params": {
+        "post": [
+          {
+            "name": "depositowner",
+            "type": "string",
+            "description": "Admin username to get player's balance",
+            "mandatory": "1",
+            "minlength": 1,
+            "maxlength": 15,
+            "regex": "/[A-Za-z0-9]+/"
+          },
+          {
+            "name": "params",
+            "type": "json",
+            "description": "An array of parameters. You can see the list of params in the table \"Input params at the array of parameters\"",
+            "mandatory": "1"
+          }
+        ],
+        "array": [
+          {
+            "name": "playername",
+            "type": "string",
+            "description": "Player's username ",
+            "mandatory": "1",
+            "minlength": 2,
+            "maxlength": 32,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "amount",
+            "type": "float",
+            "description": "Amount",
+            "mandatory": "1",
+            "regex": "/^[0-9]+[.|,]*[0-9]+$/"
+          }
+        ]
+      },
+      "example": {
+        "success": [
+          {
+            "request": "baseURI/player/massWithdraw/depositowner/bez1?params=[{\"playername\":\"player01\",\"amount\":1},{\"playername\":\"BEZ_PLAYER1\",\"amount\":1}]",
+            "response": "{\"result\":[{\"playername\":\"player01\",\"withdraw\":{\"error\":\"Player is not allowed for the TLE\",\"errorcode\":49}},{\"playername\":\"BEZ_PLAYER1\",\"withdraw\":{\"result\":\"Withdraw OK\",\"amount\":1,\"kiosktransactiontime\":\"2014-06-24 18:16:44\",\"kiosktransactionid\":\"3283\",\"ptinternaltransactionid\":\"16587621\",\"instantcashtype\":\"local\",\"executiontime\":\"311.7349 ms\",\"currentplayerbalance\":\"8\"}}]}"
+          }
+        ],
+        "error": [
+          {
+            "request": "baseURI/player/massWithdraw/depositowner/bez1?param=[{\"playername\":\"player01\",\"amount\":1},{\"playername\":\"BEZ_PLAYER1\",\"amount\":1}]",
+            "response": "{\"error\":\"Players params not specified\",\"errorcode\":168}"
+          }
+        ]
+      },
+      "errorresponse": {
+        "responsedata": [
+          {
+            "field": "error",
+            "type": "string",
+            "mandatory": "0",
+            "description": "Error message"
+          },
+          {
+            "field": "errorcode",
+            "type": "integer",
+            "mandatory": "0",
+            "description": "Error code"
+          }
+        ],
+        "errors": [
+          {
+            "code": 10,
+            "description": "Playername not specified"
+          },
+          {
+            "code": 11,
+            "description": "Casino name not specified"
+          },
+          {
+            "code": 15,
+            "description": "Kiosk not set"
+          },
+          {
+            "code": 44,
+            "description": "Player is frozen"
+          },
+          {
+            "code": 47,
+            "description": "Action is not allowed"
+          },
+          {
+            "code": 48,
+            "description": "Deposit owner is not allowed for the Entity"
+          },
+          {
+            "code": 49,
+            "description": "Player is not allowed for the TLE"
+          },
+          {
+            "code": 75,
+            "description": "Attribute 'attribute name' does not exist. Please enter the correct request"
+          },
+          {
+            "code": 98,
+            "description": "InstantCash amount 'amount' is greater than balance"
+          },
+          {
+            "code": 99,
+            "description": "Player is in game"
+          },
+          {
+            "code": 101,
+            "description": "Bonus declined on withdraw"
+          },
+          {
+            "code": 102,
+            "description": "Cannot make cashout. No permissions."
+          },
+          {
+            "code": 103,
+            "description": "Amount is below minimum allowed cashout amount"
+          },
+          {
+            "code": 104,
+            "description": "Amount is over maximum allowed cashout amount"
+          },
+          {
+            "code": 105,
+            "description": "Withdraw operations is not allowed"
+          },
+          {
+            "code": 108,
+            "description": "Admin is frozen"
+          },
+          {
+            "code": 109,
+            "description": "Admin internal state mismatch with player internal state"
+          },
+          {
+            "code": 133,
+            "description": "Deposit owner does not found"
+          },
+          {
+            "code": 142,
+            "description": "Amount not specified"
+          },
+          {
+            "code": 168,
+            "description": "Players params not specified"
+          },
+          {
+            "code": 301,
+            "description": "API error."
+          },
+          {
+            "code": 302,
+            "description": "Extrernal transaction id already exists"
+          }
+        ]
+      },
+      "successresponse": {
+        "responsetype": "application/json",
+        "responsedata": [
+          {
+            "result": [
+              {
+                "field": "playername",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Player's username"
+              },
+              {
+                "withdraw": [
+                  {
+                    "field": "result",
+                    "type": "string",
+                    "mandatory": "0",
+                    "values": "Withdraw OK"
+                  },
+                  {
+                    "field": "amount",
+                    "type": "integer",
+                    "mandatory": "0",
+                    "description": "Deposit amount"
+                  },
+                  {
+                    "field": "kiosktransactiontime",
+                    "type": "date",
+                    "mandatory": "0",
+                    "description": "Transaction time"
+                  },
+                  {
+                    "field": "kiosktransactionid",
+                    "type": "integer",
+                    "mandatory": "0",
+                    "description": "Transaction ID"
+                  },
+                  {
+                    "field": "ptinternaltransactionid",
+                    "type": "integer",
+                    "mandatory": "0",
+                    "description": "Internal transaction ID"
+                  },
+                  {
+                    "field": "instantcashtype",
+                    "type": "string",
+                    "mandatory": "0",
+                    "values": [
+                      "local",
+                      "api"
+                    ]
+                  },
+                  {
+                    "field": "executiontime",
+                    "type": "date",
+                    "mandatory": "0",
+                    "description": "Execution time in millisecond"
+                  },
+                  {
+                    "field": "currentplayerbalance",
+                    "type": "integer",
+                    "mandatory": "0",
+                    "description": "Current balance"
+                  },
+                  {
+                    "field": "error",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Error message"
+                  },
+                  {
+                    "field": "errorcode",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Error code"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "massmove": {
+      "name": "Mass move players",
+      "description": "To move a mass volume of players from one kiosk to another kiosk using Top level admin",
+      "uri": "baseURI/player/massMove/",
+      "method": "POST",
+      "params": {
+        "post": [
+          {
+            "name": "kioskname",
+            "type": "string",
+            "description": "Kiosk to move",
+            "mandatory": "1",
+            "minlength": 1,
+            "maxlength": 100,
+            "regex": "/[A-Za-z0-9.\\/,_-]+/"
+          },
+          {
+            "name": "adminname",
+            "type": "string",
+            "description": "Kiosk admin name",
+            "mandatory": "1",
+            "minlength": 1,
+            "maxlength": 100,
+            "regex": "/[A-Za-z0-9]+/"
+          },
+          {
+            "name": "params",
+            "type": "json",
+            "description": "An array of parameters. You can see the list of params in the table \"Input params at the array of parameters\"",
+            "mandatory": "1"
+          }
+        ],
+        "array": [
+          {
+            "name": "playername",
+            "type": "string",
+            "description": "Player username ",
+            "mandatory": "1",
+            "minlength": 2,
+            "maxlength": 32,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          }
+        ]
+      },
+      "example": {
+        "success": [
+          {
+            "request": "baseURI/player/massMove/kioskname/bez_kiosk1/adminname/bez1?params=[{\"playername\":\"BEZ_PL_TEST1\"},{\"playername\":\"player021\"}]",
+            "response": "</div></div>{\"result\":[{\"playername\":\"BEZ_PL_TEST1\",\"move\":{\"result\":\"ok\"}},{\"playername\":\"player021\",\"move\":{\"error\":\"Player is not allowed for the TLE\",\"errorcode\":49}}]}"
+          }
+        ],
+        "error": [
+          {
+            "request": "baseURI/player/massMove/kioskname/kiosk0/adminname/vasya",
+            "response": "{\"error\": \"Kiosk is not accessible for admin\",\"errorcode\": \"171\"}"
+          }
+        ]
+      },
+      "errorresponse": {
+        "responsedata": [
+          {
+            "field": "error",
+            "type": "string",
+            "mandatory": "0",
+            "description": "Error message"
+          },
+          {
+            "field": "errorcode",
+            "type": "integer",
+            "mandatory": "0",
+            "description": "Error code"
+          }
+        ],
+        "errors": [
+          {
+            "code": 10,
+            "description": "Playername not specified"
+          },
+          {
+            "code": 11,
+            "description": "Casino name not specified"
+          },
+          {
+            "code": 14,
+            "description": "Kiosk admin name not specified"
+          },
+          {
+            "code": 41,
+            "description": "Player does not exist"
+          },
+          {
+            "code": 48,
+            "description": "Kiosk admin does not belong to TLE"
+          },
+          {
+            "code": 49,
+            "description": "Player is not allowed for the TLE"
+          },
+          {
+            "code": 71,
+            "description": "Could not load player data. Error: 'UMS API return error on access request attempt'"
+          },
+          {
+            "code": 72,
+            "description": "Could not load player data. Error: 'Service error accessing UMS API'"
+          },
+          {
+            "code": 73,
+            "description": "Could not load player data from database. Error: 'Database error occured, please contact support'. Please, try again later"
+          },
+          {
+            "code": 116,
+            "description": "Kiosk name not specified"
+          },
+          {
+            "code": 133,
+            "description": "Deposit owner does not found"
+          },
+          {
+            "code": 168,
+            "description": "Players params not specified"
+          },
+          {
+            "code": 171,
+            "description": "Kiosk is not accessible for admin"
+          }
+        ]
+      },
+      "successresponse": {
+        "responsetype": "application/json",
+        "responsedata": [
+          {
+            "result": [
+              {
+                "field": "playername",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Player's username"
+              },
+              {
+                "move": [
+                  {
+                    "field": "result",
+                    "type": "string",
+                    "mandatory": "0",
+                    "values": "ok"
+                  },
+                  {
+                    "field": "error",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Error message"
+                  },
+                  {
+                    "field": "errorcode",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Error code"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "massupdate": {
+      "name": "Mass update players",
+      "description": "To update the information of a mass volume of players",
+      "uri": "baseURI/player/massUpdate/",
+      "method": "POST",
+      "params": {
+        "post": [
+          {
+            "name": "params",
+            "type": "json",
+            "description": "An array of parameters. You can see the list of params in the table \"Input params at the array of parameters\"",
+            "mandatory": "1"
+          }
+        ],
+        "array": [
+          {
+            "name": "playername",
+            "type": "string",
+            "description": "Player username",
+            "mandatory": "1",
+            "minlength": 2,
+            "maxlength": 32,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "firstname",
+            "type": "string",
+            "description": "First name",
+            "mandatory": "0",
+            "minlength": 1,
+            "maxlength": 50,
+            "regex": "/[A-Za-z.,-]+/"
+          },
+          {
+            "name": "lastname",
+            "type": "string",
+            "description": "Last name",
+            "mandatory": "0",
+            "minlength": 1,
+            "maxlength": 50,
+            "regex": "/[A-Za-z.,-]+/"
+          },
+          {
+            "name": "countrycode",
+            "type": "string",
+            "description": "Country code",
+            "mandatory": "0",
+            "minlength": 2,
+            "maxlength": 2,
+            "regex": "/[A-Za-z]+/"
+          },
+          {
+            "name": "frozen",
+            "type": "integer",
+            "description": "Frozen",
+            "mandatory": "0",
+            "values": [
+              0,
+              1
+            ]
+          },
+          {
+            "name": "city",
+            "type": "string",
+            "description": "City",
+            "mandatory": "0",
+            "minlength": 2,
+            "maxlength": 50,
+            "regex": "/[A-Za-z-]+/"
+          },
+          {
+            "name": "address",
+            "type": "string",
+            "description": "Address",
+            "mandatory": "0",
+            "minlength": 2,
+            "maxlength": 160,
+            "regex": "/[A-Za-z0-9./,-\\s]+/"
+          },
+          {
+            "name": "phone",
+            "type": "string",
+            "description": "Phone",
+            "mandatory": "0",
+            "minlength": 4,
+            "maxlength": 20,
+            "regex": "/[0-9].*[0-9].*[0-9].*[0-9]/"
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "description": "Email",
+            "mandatory": "0",
+            "minlength": 1,
+            "maxlength": 100,
+            "regex": "/^([A-Za-z0-9!#$%&*+=?^_`{|}~-]+(.[A-Za-z0-9!#$%&*+=?^_`{|}~-]+)*)@(([a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]|[a-zA-Z0-9]{1,63})(.([a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]|[a-zA-Z0-9]{1,63}))*.[a-zA-Z0-9]{2,63})$/"
+          },
+          {
+            "name": "state",
+            "type": "string",
+            "description": "State",
+            "mandatory": "0",
+            "minlength": 2,
+            "maxlength": 20,
+            "regex": "/[A-Za-z0-9]+/"
+          },
+          {
+            "name": "zip",
+            "type": "string",
+            "description": "Zip code",
+            "mandatory": "0",
+            "minlength": 2,
+            "maxlength": 20,
+            "regex": "/[A-Za-z0-9-_]+/"
+          },
+          {
+            "name": "fax",
+            "type": "string",
+            "description": "Fax",
+            "mandatory": "0",
+            "maxlength": 20,
+            "regex": "/[A-Za-z0-9.+-]+/"
+          },
+          {
+            "name": "comments",
+            "type": "string",
+            "description": "Comments",
+            "mandatory": "0"
+          },
+          {
+            "name": "birthdate",
+            "type": "date",
+            "description": "Birthdate",
+            "mandatory": "0",
+            "regex": "/[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])/"
+          },
+          {
+            "name": "viplevel",
+            "type": "integer",
+            "description": "VIP level. If allowed for kioskadmin who create player.",
+            "mandatory": "0"
+          },
+          {
+            "name": "languagecode",
+            "type": "string",
+            "description": "Language code.",
+            "mandatory": "0",
+            "minlength": 2,
+            "maxlength": 5,
+            "regex": "/[A-Za-z-]+/"
+          },
+          {
+            "name": "sex",
+            "type": "integer",
+            "description": "Sex",
+            "mandatory": "0",
+            "values": [
+              "M",
+              "F"
+            ]
+          },
+          {
+            "name": "password",
+            "type": "string",
+            "description": "Password",
+            "mandatory": "0"
+          },
+          {
+            "name": "custom02",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom03",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 10,
+            "regex": "/^[0-9]{8}.[0-9]{2}$/"
+          },
+          {
+            "name": "custom04",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 10,
+            "regex": "/^[0-9]{8}.[0-9]{2}$/"
+          },
+          {
+            "name": "custom05",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom06",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom07",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 20,
+            "regex": "/^[0-9]{20}.[0-9]{2}$/"
+          },
+          {
+            "name": "custom08",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 20,
+            "regex": "/^[0-9]{20}.[0-9]{2}$/"
+          },
+          {
+            "name": "custom09",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom10",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom11",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom12",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom13",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom14",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom15",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom16",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom17",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom18",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom19",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom20",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "3RDPContainer",
+            "type": "json",
+            "description": "Json encoded array of 3RDP container. A list of attributes that can be set have a range custom01..custom20. Example used the parameter, 3RDPContainer={\"custom01\":\"custom01 field value\",\"custom02\":\"custom02 field value\"}",
+            "mandatory": "0"
+          },
+          {
+            "name": "trackingid",
+            "type": "string",
+            "description": "TrackingID field",
+            "mandatory": "0",
+            "maxlength": 100,
+            "regex": "/[^(\\;|\\:)]+/"
+          }
+        ]
+      },
+      "example": {
+        "success": [
+          {
+            "request": "baseURI/player/massUpdate?params=[{\"playername\":\"player01\"},{\"playername\":\"BEZ_PL_TEST1\",\"firstname\":\"aaa\",\"3RDPContainer\":{\"custom02\":\"custom02 field value\",\"custom05\":\"custom05 field value\"}},{\"playername\":\"BEZ_PL_TEST2\",\"firstnme\":\"bbb\"}]",
+            "response": "{\"result\":[{\"playername\":\"player01\",\"update\":{\"error\":\"Player is not allowed for the TLE\",\"errorcode\":49}},{\"playername\":\"BEZ_PL_TEST1\",\"update\":{\"result\":\"Player's information has been updated.\"}},{\"playername\":\"BEZ_PL_TEST2\",\"update\":{\"error\":\"Attribute 'firstnme' does not exist. Please enter the correct request!\",\"errorcode\":75}}]}"
+          }
+        ],
+        "error": [
+          {
+            "request": "baseURI/player/massUpdate?param=[{\"playername\":\"player01\"}]",
+            "response": "{\"error\":\"Players params not specified\",\"errorcode\":168}"
+          }
+        ]
+      },
+      "errorresponse": {
+        "responsedata": [
+          {
+            "field": "error",
+            "type": "string",
+            "mandatory": "0",
+            "description": "Error message"
+          },
+          {
+            "field": "errorcode",
+            "type": "integer",
+            "mandatory": "0",
+            "description": "Error code"
+          }
+        ],
+        "errors": [
+          {
+            "code": 10,
+            "description": "Playername not specified"
+          },
+          {
+            "code": 11,
+            "description": "Casino name not specified"
+          },
+          {
+            "code": 22,
+            "description": "Nickname is not set"
+          },
+          {
+            "code": 23,
+            "description": "Inappropriate casino nickname. Please choose another nickname."
+          },
+          {
+            "code": 24,
+            "description": "This nickname is currently being used by another player. Enter a different nickname and try again"
+          },
+          {
+            "code": 25,
+            "description": "Player is online and the Casino nickname is not changeable"
+          },
+          {
+            "code": 26,
+            "description": "Player is offline but is registered to a tournament or still taking part of an ongoing trournament"
+          },
+          {
+            "code": 27,
+            "description": "Technical error. Could not update player Casino nickname."
+          },
+          {
+            "code": 41,
+            "description": "Player not found"
+          },
+          {
+            "code": 49,
+            "description": "Player is not allowed for the TLE"
+          },
+          {
+            "code": 50,
+            "description": "Player password is too short"
+          },
+          {
+            "code": 51,
+            "description": "Player password is too long"
+          },
+          {
+            "code": 72,
+            "description": "Cannot update through web api"
+          },
+          {
+            "code": 75,
+            "description": "Attribute 'attribute name' does not exist. Please enter the correct request"
+          },
+          {
+            "code": 76,
+            "description": "Entered the wrong request format"
+          },
+          {
+            "code": 140,
+            "description": "Form validation errors"
+          },
+          {
+            "code": 168,
+            "description": "Players params not specified"
+          }
+        ]
+      },
+      "successresponse": {
+        "responsetype": "application/json",
+        "responsedata": [
+          {
+            "result": [
+              {
+                "field": "playername",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Player's username"
+              },
+              {
+                "update": [
+                  {
+                    "field": "result",
+                    "type": "string",
+                    "mandatory": "0",
+                    "values": "Player's information has been updated."
+                  },
+                  {
+                    "field": "error",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Error message"
+                  },
+                  {
+                    "field": "errorcode",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Error code"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "update": {
+      "name": "Update player",
+      "description": "To update the information of a specific player account",
+      "uri": "baseURI/player/update/",
+      "method": "POST",
+      "params": {
+        "post": [
+          {
+            "name": "playername",
+            "type": "string",
+            "description": "Player's username",
+            "mandatory": "1",
+            "minlength": 2,
+            "maxlength": 32,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "firstname",
+            "type": "string",
+            "description": "First name",
+            "mandatory": "0",
+            "minlength": 1,
+            "maxlength": 50,
+            "regex": "/[A-Za-z.,-]+/"
+          },
+          {
+            "name": "lastname",
+            "type": "string",
+            "description": "Last name",
+            "mandatory": "0",
+            "minlength": 1,
+            "maxlength": 50,
+            "regex": "/[A-Za-z.,-]+/"
+          },
+          {
+            "name": "countrycode",
+            "type": "string",
+            "description": "Country code",
+            "mandatory": "0",
+            "minlength": 2,
+            "maxlength": 2,
+            "regex": "/[A-Za-z]+/"
+          },
+          {
+            "name": "frozen",
+            "type": "integer",
+            "description": "Frozen",
+            "mandatory": "0",
+            "values": [
+              0,
+              1
+            ]
+          },
+          {
+            "name": "city",
+            "type": "string",
+            "description": "City",
+            "mandatory": "0",
+            "minlength": 2,
+            "maxlength": 50,
+            "regex": "/[A-Za-z-]+/"
+          },
+          {
+            "name": "address",
+            "type": "string",
+            "description": "Address",
+            "mandatory": "0",
+            "minlength": 2,
+            "maxlength": 160,
+            "regex": "/[A-Za-z0-9./,-\\s]+/"
+          },
+          {
+            "name": "phone",
+            "type": "string",
+            "description": "Phone",
+            "mandatory": "0",
+            "minlength": 4,
+            "maxlength": 20,
+            "regex": "/[0-9].*[0-9].*[0-9].*[0-9]/"
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "description": "Email",
+            "mandatory": "0",
+            "minlength": 1,
+            "maxlength": 100,
+            "regex": "/^([A-Za-z0-9!#$%&*+=?^_`{|}~-]+(.[A-Za-z0-9!#$%&*+=?^_`{|}~-]+)*)@(([a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]|[a-zA-Z0-9]{1,63})(.([a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]|[a-zA-Z0-9]{1,63}))*.[a-zA-Z0-9]{2,63})$/"
+          },
+          {
+            "name": "state",
+            "type": "string",
+            "description": "State",
+            "mandatory": "0",
+            "minlength": 2,
+            "maxlength": 20,
+            "regex": "/[A-Za-z0-9]+/"
+          },
+          {
+            "name": "zip",
+            "type": "string",
+            "description": "Zip code",
+            "mandatory": "0",
+            "minlength": 2,
+            "maxlength": 20,
+            "regex": "/[A-Za-z0-9-_]+/"
+          },
+          {
+            "name": "fax",
+            "type": "string",
+            "description": "Fax",
+            "mandatory": "0",
+            "maxlength": 20,
+            "regex": "/[A-Za-z0-9.+-]+/"
+          },
+          {
+            "name": "comments",
+            "type": "string",
+            "description": "Comments",
+            "mandatory": "0"
+          },
+          {
+            "name": "birthdate",
+            "type": "date",
+            "description": "Birthdate",
+            "mandatory": "0",
+            "regex": "/[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])/"
+          },
+          {
+            "name": "viplevel",
+            "type": "integer",
+            "description": "VIP level. If allowed for kioskadmin who create player.",
+            "mandatory": "0"
+          },
+          {
+            "name": "languagecode",
+            "type": "string",
+            "description": "Language code.",
+            "mandatory": "0",
+            "minlength": 2,
+            "maxlength": 5,
+            "regex": "/[A-Za-z-]+/"
+          },
+          {
+            "name": "sex",
+            "type": "integer",
+            "description": "Sex",
+            "mandatory": "0",
+            "values": [
+              "M",
+              "F"
+            ]
+          },
+          {
+            "name": "password",
+            "type": "string",
+            "description": "Password",
+            "mandatory": "0"
+          },
+          {
+            "name": "custom02",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom03",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 10,
+            "regex": "/^[0-9]{8}.[0-9]{2}$/"
+          },
+          {
+            "name": "custom04",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 10,
+            "regex": "/^[0-9]{8}.[0-9]{2}$/"
+          },
+          {
+            "name": "custom05",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom06",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom07",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 20,
+            "regex": "/^[0-9]{20}.[0-9]{2}$/"
+          },
+          {
+            "name": "custom08",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 20,
+            "regex": "/^[0-9]{20}.[0-9]{2}$/"
+          },
+          {
+            "name": "custom09",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom10",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom11",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom12",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom13",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom14",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom15",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom16",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom17",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom18",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom19",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "custom20",
+            "type": "string",
+            "description": "Custom field",
+            "mandatory": "0",
+            "maxlength": 200,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "3RDPContainer",
+            "type": "json",
+            "description": "Json encoded array of 3RDP container. A list of attributes that can be set have a range custom01..custom20. Example used the parameter, 3RDPContainer={\"custom01\":\"custom01 field value\",\"custom02\":\"custom02 field value\"}",
+            "mandatory": "0"
+          },
+          {
+            "name": "trackingid",
+            "type": "string",
+            "description": "TrackingID field",
+            "mandatory": "0",
+            "maxlength": 100,
+            "regex": "/[^(\\;|\\:)]+/"
+          }
+        ]
+      },
+      "example": {
+        "success": [
+          {
+            "request": "baseURI/player/update/playername/ZELTEST/viplevel/2/phone/123214423/3RDPContainer/{\"custom02\":\"custom02 field value\",\"custom03\":\"custom03 field value\"}",
+            "response": "{\"result\":{\"result\":\"Player's information has been updated.\"}}"
+          }
+        ],
+        "error": [
+          {
+            "request": "baseURI/player/update/playername/ZELTESTERR/viplevel/2/phone/123214423",
+            "response": "{\"error\":\"Player does not exist\",\"errorcode\":41}"
+          }
+        ]
+      },
+      "errorresponse": {
+        "responsedata": [
+          {
+            "field": "error",
+            "type": "string",
+            "mandatory": "1",
+            "description": "Error message"
+          },
+          {
+            "field": "errorcode",
+            "type": "integer",
+            "mandatory": "1",
+            "description": "Error code"
+          }
+        ],
+        "errors": [
+          {
+            "code": 10,
+            "description": "Playername not specified"
+          },
+          {
+            "code": 11,
+            "description": "Casino name not specified"
+          },
+          {
+            "code": 22,
+            "description": "Nickname is not set"
+          },
+          {
+            "code": 23,
+            "description": "Inappropriate casino nickname. Please choose another nickname."
+          },
+          {
+            "code": 24,
+            "description": "This nickname is currently being used by another player. Enter a different nickname and try again"
+          },
+          {
+            "code": 25,
+            "description": "Player is online and the Casino nickname is not changeable"
+          },
+          {
+            "code": 26,
+            "description": "Player is offline but is registered to a tournament or still taking part of an ongoing trournament"
+          },
+          {
+            "code": 27,
+            "description": "Technical error. Could not update player Casino nickname."
+          },
+          {
+            "code": 41,
+            "description": "Player not found"
+          },
+          {
+            "code": 49,
+            "description": "Player is not allowed for thew Entity"
+          },
+          {
+            "code": 50,
+            "description": "Player password is too short"
+          },
+          {
+            "code": 51,
+            "description": "Player password is too long"
+          },
+          {
+            "code": 72,
+            "description": "Cannot update through web api"
+          },
+          {
+            "code": 75,
+            "description": "Attribute 'attribute name' does not exist. Please enter the correct request"
+          },
+          {
+            "code": 76,
+            "description": "Entered the wrong request format"
+          },
+          {
+            "code": 140,
+            "description": "Form validation errors"
+          }
+        ]
+      },
+      "successresponse": {
+        "responsetype": "application/json",
+        "responsedata": [
+          {
+            "result": [
+              {
+                "field": "result",
+                "type": "string",
+                "mandatory": "1",
+                "values": "Player's information has been updated."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "move": {
+      "name": "Move player",
+      "description": "To move a specific player from one kiosk to another kiosk",
+      "uri": "baseURI/player/move/",
+      "method": "POST",
+      "params": {
+        "post": [
+          {
+            "name": "playername",
+            "type": "string",
+            "description": "Player name",
+            "mandatory": "1",
+            "minlength": 2,
+            "maxlength": 32,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "kioskname",
+            "type": "string",
+            "description": "Kiosk name",
+            "mandatory": "1",
+            "minlength": 1,
+            "maxlength": 100,
+            "regex": "/[A-Za-z0-9.\\/,_-]+/"
+          },
+          {
+            "name": "adminname",
+            "type": "string",
+            "description": "Kiosk admin name",
+            "mandatory": "1",
+            "minlength": 1,
+            "maxlength": 100,
+            "regex": "/[A-Za-z0-9]+/"
+          }
+        ]
+      },
+      "example": {
+        "success": [
+          {
+            "request": "baseURI/player/move/playername/player01/kioskname/kiosk03/adminname/vasya",
+            "response": "{\"result\":{\"result\":\"Player has been moved.\"}}"
+          }
+        ],
+        "error": [
+          {
+            "request": "baseURI/player/move/playername/player011/kioskname/kiosk03/adminname/vasya",
+            "response": "{\"error\":\"Player is not allowed for the TLE\",\"errorcode\":49}"
+          }
+        ]
+      },
+      "errorresponse": {
+        "responsedata": [
+          {
+            "field": "error",
+            "type": "string",
+            "mandatory": "1",
+            "description": "Error message"
+          },
+          {
+            "field": "errorcode",
+            "type": "integer",
+            "mandatory": "1",
+            "description": "Error code"
+          }
+        ],
+        "errors": [
+          {
+            "code": 10,
+            "description": "Playername not specified"
+          },
+          {
+            "code": 11,
+            "description": "Casino name not specified"
+          },
+          {
+            "code": 14,
+            "description": "Kiosk admin name not specified"
+          },
+          {
+            "code": 41,
+            "description": "Player does not exist"
+          },
+          {
+            "code": 48,
+            "description": "Kiosk admin does not belong to TLE"
+          },
+          {
+            "code": 49,
+            "description": "Player is not allowed for the Entity"
+          },
+          {
+            "code": 71,
+            "description": "Could not load player data. Error: 'UMS API return error on access request attempt'"
+          },
+          {
+            "code": 72,
+            "description": "Could not load player data. Error: 'Service error accessing UMS API'"
+          },
+          {
+            "code": 73,
+            "description": "Could not load player data from database. Error: 'Database error occured, please contact support'. Please, try again later"
+          },
+          {
+            "code": 116,
+            "description": "Kiosk name not specified"
+          },
+          {
+            "code": 133,
+            "description": "Kiosk admin does not found"
+          },
+          {
+            "code": 171,
+            "description": "Kiosk is not accessible for admin"
+          }
+        ]
+      },
+      "successresponse": {
+        "responsetype": "application/json",
+        "responsedata": [
+          {
+            "result": [
+              {
+                "field": "result",
+                "type": "string",
+                "mandatory": "1",
+                "values": "Player has been moved."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "checktransaction": {
+      "name": "Get transaction status",
+      "description": "To check the status of Player transaction using the specific external transaction ID inputted on deposit and withdraw actions",
+      "uri": "baseURI/player/checktransaction/",
+      "method": "POST",
+      "params": {
+        "post": [
+          {
+            "name": "externaltransactionid",
+            "type": "string",
+            "description": "External transaction ID",
+            "mandatory": "1"
+          }
+        ]
+      },
+      "example": {
+        "success": [
+          {
+            "request": "baseURI/player/checktransaction/externaltransactionid/15751",
+            "response": "{\"result\":{\"status\":\"missing\",\"externaltransactionid\":\"15751\",\"executiontime\":\"57.868 ms\"}}"
+          }
+        ],
+        "error": [
+          {
+            "request": "baseURI/player/checktransaction/",
+            "response": "{\"error\":\"External transaction ID not specified\",\"errorcode\":16}"
+          }
+        ]
+      },
+      "errorresponse": {
+        "responsedata": [
+          {
+            "field": "error",
+            "type": "string",
+            "mandatory": "1",
+            "description": "Error message"
+          },
+          {
+            "field": "errorcode",
+            "type": "integer",
+            "mandatory": "1",
+            "description": "Error code"
+          }
+        ],
+        "errors": [
+          {
+            "code": 11,
+            "description": "Casino name not specified"
+          },
+          {
+            "code": 16,
+            "description": "External transaction ID not specified"
+          },
+          {
+            "code": 75,
+            "description": "Attribute 'attribute name' does not exist. Please enter the correct request"
+          }
+        ]
+      },
+      "successresponse": {
+        "responsetype": "application/json",
+        "responsedata": [
+          {
+            "result": [
+              {
+                "field": "status",
+                "type": "string",
+                "mandatory": "1",
+                "values": [
+                  "approved",
+                  "declined",
+                  "missing",
+                  "waiting",
+                  "notallowed"
+                ]
+              },
+              {
+                "field": "externaltransactionid",
+                "type": "integer",
+                "mandatory": "1",
+                "description": "External transaction ID"
+              },
+              {
+                "field": "executiontime",
+                "type": "date",
+                "mandatory": "1",
+                "description": "Execution time in millisecond"
+              },
+              {
+                "field": "amount",
+                "type": "integer",
+                "mandatory": "0",
+                "description": "Deposit amount"
+              },
+              {
+                "field": "currentplayerbalance",
+                "type": "integer",
+                "mandatory": "0",
+                "description": "Current balance"
+              },
+              {
+                "field": "kiosktransactiontime",
+                "type": "date",
+                "mandatory": "0",
+                "description": "Transaction time"
+              },
+              {
+                "field": "kiosktransactionid",
+                "type": "integer",
+                "mandatory": "0",
+                "description": "Transaction ID"
+              },
+              {
+                "field": "ptinternaltransactionid",
+                "type": "integer",
+                "mandatory": "0",
+                "description": "Internal transaction ID"
+              },
+              {
+                "field": "ip",
+                "type": "string",
+                "mandatory": "0",
+                "description": "Remote IP address"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "deposit": {
+      "name": "Deposit action",
+      "description": "To add credits to a specific player account",
+      "uri": "baseURI/player/deposit/",
+      "method": "POST",
+      "params": {
+        "post": [
+          {
+            "name": "playername",
+            "type": "string",
+            "description": "Player name",
+            "mandatory": "1",
+            "minlength": 2,
+            "maxlength": 32,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "amount",
+            "type": "string",
+            "description": "Amount to deposit",
+            "mandatory": "1",
+            "regex": "/^[0-9]+[.|,]*[0-9]+$/"
+          },
+          {
+            "name": "adminname",
+            "type": "string",
+            "description": "Player kiosk admin",
+            "mandatory": "1",
+            "minlength": 1,
+            "maxlength": 100,
+            "regex": "/[A-Za-z0-9]+/"
+          },
+          {
+            "name": "externaltranid",
+            "type": "string",
+            "description": "External transaction ID",
+            "mandatory": "0",
+            "minlength": 1,
+            "maxlength": 100
+          }
+        ]
+      },
+      "example": {
+        "success": [
+          {
+            "request": "baseURI/player/deposit/playername/BEZ_PLAYER1/amount/10/adminname/bez1/externaltranid/123474",
+            "response": "{\"result\":{\"amount\":10,\"currentplayerbalance\":\"58\",\"executiontime\":\"366.3161 ms\",\"externaltransactionid\":\"123474\",\"instantcashtype\":\"local\",\"kiosktransactionid\":\"3323\",\"kiosktransactiontime\":\"2014-06-25 12:57:53\",\"ptinternaltransactionid\":\"16587841\",\"result\":\"Deposit OK\"}}"
+          }
+        ],
+        "error": [
+          {
+            "request": "baseURI/player/deposit/playername/ZELTESTERR/amount/9999999999999/adminname/632751",
+            "response": "{\"error\":\"Cannot make deposit. Amount exeeds maximum deposit limit for this player.\",\"errorcode\":94}"
+          }
+        ]
+      },
+      "errorresponse": {
+        "responsedata": [
+          {
+            "field": "error",
+            "type": "string",
+            "mandatory": "1",
+            "description": "Error message"
+          },
+          {
+            "field": "errorcode",
+            "type": "integer",
+            "mandatory": "1",
+            "description": "Error code"
+          }
+        ],
+        "errors": [
+          {
+            "code": 10,
+            "description": "Player name not specified"
+          },
+          {
+            "code": 11,
+            "description": "Casino name not specified"
+          },
+          {
+            "code": 13,
+            "description": "Amount not specified"
+          },
+          {
+            "code": 14,
+            "description": "Admin not specified"
+          },
+          {
+            "code": 18,
+            "description": "The possible values of the amount can be only numbers"
+          },
+          {
+            "code": 41,
+            "description": "Player does not exist"
+          },
+          {
+            "code": 43,
+            "description": "Player does not belong to kiosk"
+          },
+          {
+            "code": 44,
+            "description": "Player is frozen"
+          },
+          {
+            "code": 45,
+            "description": "Language code is restricted for TLE"
+          },
+          {
+            "code": 46,
+            "description": "Player has waiting withdrawal requests"
+          },
+          {
+            "code": 47,
+            "description": "Action is not allowed"
+          },
+          {
+            "code": 48,
+            "description": "Kiosk admin does not belong to TLE"
+          },
+          {
+            "code": 49,
+            "description": "Player is not allowed for the Entity"
+          },
+          {
+            "code": 71,
+            "description": "Could not load player data. Error: 'UMS API return error on access request attempt'"
+          },
+          {
+            "code": 72,
+            "description": "Could not load player data. Error: 'Service error accessing UMS API'"
+          },
+          {
+            "code": 73,
+            "description": "Could not load player data from database. Error: 'Database error occured, please contact support'. Please, try again later"
+          },
+          {
+            "code": 75,
+            "description": "Attribute 'attribute name' does not exist. Please enter the correct request"
+          },
+          {
+            "code": 92,
+            "description": "Deposit not allowed"
+          },
+          {
+            "code": 93,
+            "description": "Cannot make deposit. Amount is less than minimum deposit amount for this player."
+          },
+          {
+            "code": 94,
+            "description": "Cannot make deposit. Amount exeeds maximum deposit limit for this player."
+          },
+          {
+            "code": 95,
+            "description": "Casino not open"
+          },
+          {
+            "code": 96,
+            "description": "Cannot make deposit. Your deposit limit for period is exceeded"
+          },
+          {
+            "code": 97,
+            "description": "Kioskadmin deposit balance insufficient."
+          },
+          {
+            "code": 106,
+            "description": "Kioskadmin deposit balance update failed."
+          },
+          {
+            "code": 108,
+            "description": "Admin is frozen"
+          },
+          {
+            "code": 109,
+            "description": "Admin internal state mismatch with player internal state"
+          },
+          {
+            "code": 133,
+            "description": "Kiosk admin does not found"
+          },
+          {
+            "code": 148,
+            "description": "Koisk admin code is not valid"
+          },
+          {
+            "code": 170,
+            "description": "Deposit error"
+          },
+          {
+            "code": 301,
+            "description": "API error."
+          },
+          {
+            "code": 302,
+            "description": "External transaction id already exists"
+          }
+        ]
+      },
+      "successresponse": {
+        "responsetype": "application/json",
+        "responsedata": [
+          {
+            "result": [
+              {
+                "field": "amount",
+                "type": "integer",
+                "mandatory": "1",
+                "description": "Deposit amount"
+              },
+              {
+                "field": "currentplayerbalance",
+                "type": "integer",
+                "mandatory": "0",
+                "description": "Current balance"
+              },
+              {
+                "field": "kiosktransactiontime",
+                "type": "date",
+                "mandatory": "1",
+                "description": "Transaction time"
+              },
+              {
+                "field": "kiosktransactionid",
+                "type": "integer",
+                "mandatory": "1",
+                "description": "Transaction ID"
+              },
+              {
+                "field": "ptinternaltransactionid",
+                "type": "integer",
+                "mandatory": "1",
+                "description": "Internal transaction ID"
+              },
+              {
+                "field": "externaltransactionid",
+                "type": "integer",
+                "mandatory": "1",
+                "description": "External transaction ID"
+              },
+              {
+                "field": "instantcashtype",
+                "type": "string",
+                "mandatory": "1",
+                "values": [
+                  "local",
+                  "api"
+                ]
+              },
+              {
+                "field": "executiontime",
+                "type": "date",
+                "mandatory": "1",
+                "description": "Execution time in millisecond"
+              },
+              {
+                "field": "result",
+                "type": "string",
+                "mandatory": "1",
+                "values": "Deposit OK"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "withdraw": {
+      "name": "Withdraw action",
+      "description": "To remove credits from a specific player account",
+      "uri": "baseURI/player/withdraw/",
+      "method": "POST",
+      "params": {
+        "post": [
+          {
+            "name": "playername",
+            "type": "string",
+            "description": "Player's name",
+            "mandatory": "1",
+            "minlength": 2,
+            "maxlength": 32,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "amount",
+            "type": "float",
+            "description": "Amount to withdraw",
+            "mandatory": "1",
+            "regex": "/^[0-9]+[.|,]*[0-9]+$/"
+          },
+          {
+            "name": "adminname",
+            "type": "string",
+            "description": "Player kiosk admin",
+            "mandatory": "1",
+            "minlength": 1,
+            "maxlength": 100,
+            "regex": "/[A-Za-z0-9]+/"
+          },
+          {
+            "name": "isForce",
+            "type": "string",
+            "description": "isForce",
+            "mandatory": "0",
+            "values": [
+              1,
+              0
+            ]
+          },
+          {
+            "name": "externaltranid",
+            "type": "string",
+            "description": "External transaction ID",
+            "mandatory": "0",
+            "minlength": 1,
+            "maxlength": 100
+          },
+          {
+            "name": "losebonus",
+            "type": "boolean",
+            "description": "In case 'true', Payments will decline all bonuses that are marked to be 'Declined upon withdraw request'.",
+            "mandatory": "0",
+            "regex": "/^0|1$/"
+          }
+        ]
+      },
+      "example": {
+        "success": [
+          {
+            "request": "baseURI/player/withdraw/playername/BEZ_PLAYER1/amount/10/adminname/bez1/externaltranid/123476/",
+            "response": "{\"result\":{\"amount\":10,\"currentplayerbalance\":\"58\",\"executiontime\":\"457.6418 ms\",\"externaltransactionid\":\"123476\",\"instantcashtype\":\"local\",\"kiosktransactionid\":\"3325\",\"kiosktransactiontime\":\"2014-06-25 13:05:16\",\"ptinternaltransactionid\":\"16587861\",\"result\":\"Withdraw OK\"}}"
+          }
+        ],
+        "error": [
+          {
+            "request": "baseURI/player/withdraw/playername/ZELTEST/amount/9999999999999/adminname/632751/",
+            "response": "{\"error\":\"InstantCash amount 9999999999999 is greater than balance\",\"errorcode\":98}"
+          }
+        ]
+      },
+      "errorresponse": {
+        "responsedata": [
+          {
+            "field": "error",
+            "type": "string",
+            "mandatory": "1",
+            "description": "Error message"
+          },
+          {
+            "field": "errorcode",
+            "type": "integer",
+            "mandatory": "1",
+            "description": "Error code"
+          }
+        ],
+        "errors": [
+          {
+            "code": 10,
+            "description": "Player name not specified"
+          },
+          {
+            "code": 11,
+            "description": "Casino name not specified"
+          },
+          {
+            "code": 13,
+            "description": "Amount not specified"
+          },
+          {
+            "code": 14,
+            "description": "Admin not specified"
+          },
+          {
+            "code": 15,
+            "description": "Kiosk not set"
+          },
+          {
+            "code": 18,
+            "description": "The possible values of the amount can be only numbers"
+          },
+          {
+            "code": 41,
+            "description": "Player does not exist"
+          },
+          {
+            "code": 43,
+            "description": "Player does not belongs to kiosk"
+          },
+          {
+            "code": 44,
+            "description": "Player is frozen"
+          },
+          {
+            "code": 47,
+            "description": "Action is not allowed"
+          },
+          {
+            "code": 48,
+            "description": "Kiosk admin does not belong to TLE"
+          },
+          {
+            "code": 49,
+            "description": "Player is not allowed for the Entity"
+          },
+          {
+            "code": 71,
+            "description": "Could not load player data. Error: 'UMS API return error on access request attempt'"
+          },
+          {
+            "code": 72,
+            "description": "Could not load player data. Error: 'Service error accessing UMS API'"
+          },
+          {
+            "code": 73,
+            "description": "Could not load player data from database. Error: 'Database error occured, please contact support'. Please, try again later"
+          },
+          {
+            "code": 75,
+            "description": "Attribute 'attribute name' does not exist. Please enter the correct request"
+          },
+          {
+            "code": 98,
+            "description": "InstantCash amount 'amount' is greater than balance"
+          },
+          {
+            "code": 99,
+            "description": "Player is in game"
+          },
+          {
+            "code": 101,
+            "description": "Bonus declined on withdraw"
+          },
+          {
+            "code": 102,
+            "description": "Cannot make cashout. No permissions."
+          },
+          {
+            "code": 103,
+            "description": "Amount is below minimum allowed cashout amount"
+          },
+          {
+            "code": 104,
+            "description": "Amount is over current player balance"
+          },
+          {
+            "code": 105,
+            "description": "Withdraw operation is not allowed"
+          },
+          {
+            "code": 106,
+            "description": "Kioskadmin deposit balance update failed."
+          },
+          {
+            "code": 108,
+            "description": "Admin is frozen"
+          },
+          {
+            "code": 109,
+            "description": "Admin internal state mismatch with player internal state"
+          },
+          {
+            "code": 133,
+            "description": "Kiosk admin does not found"
+          },
+          {
+            "code": 301,
+            "description": "API error."
+          },
+          {
+            "code": 302,
+            "description": "External transaction id already exists"
+          }
+        ]
+      },
+      "successresponse": {
+        "responsetype": "application/json",
+        "responsedata": [
+          {
+            "result": [
+              {
+                "field": "amount",
+                "type": "integer",
+                "mandatory": "1",
+                "description": "Withdraw amount"
+              },
+              {
+                "field": "currentplayerbalance",
+                "type": "integer",
+                "mandatory": "0",
+                "description": "Current balance"
+              },
+              {
+                "field": "kiosktransactiontime",
+                "type": "date",
+                "mandatory": "1",
+                "description": "Transaction time"
+              },
+              {
+                "field": "kiosktransactionid",
+                "type": "integer",
+                "mandatory": "1",
+                "description": "Transaction ID"
+              },
+              {
+                "field": "ptinternaltransactionid",
+                "type": "integer",
+                "mandatory": "1",
+                "description": "Internal transaction ID"
+              },
+              {
+                "field": "externaltransactionid",
+                "type": "integer",
+                "mandatory": "1",
+                "description": "External transaction ID"
+              },
+              {
+                "field": "instantcashtype",
+                "type": "string",
+                "mandatory": "1",
+                "values": [
+                  "local",
+                  "api"
+                ]
+              },
+              {
+                "field": "executiontime",
+                "type": "date",
+                "mandatory": "1",
+                "description": "Execution time in millisecond"
+              },
+              {
+                "field": "result",
+                "type": "string",
+                "mandatory": "1",
+                "values": "Withdraw OK"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "compensation": {
+      "name": "Compensation action",
+      "description": "To give compensation to a specific player. This is tagged as deposit on transaction type.",
+      "uri": "baseURI/player/compensation/",
+      "method": "POST",
+      "params": {
+        "post": [
+          {
+            "name": "playername",
+            "type": "string",
+            "description": "Player's name",
+            "mandatory": "1",
+            "minlength": 2,
+            "maxlength": 32,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "amount",
+            "type": "float",
+            "description": "Amount to compensate",
+            "mandatory": "1",
+            "regex": "/^[0-9]+[.|,]*[0-9]+$/"
+          },
+          {
+            "name": "adminname",
+            "type": "string",
+            "description": "Player kiosk admin name",
+            "mandatory": "1",
+            "minlength": 1,
+            "maxlength": 100,
+            "regex": "/[A-Za-z0-9]+/"
+          },
+          {
+            "name": "externaltranid",
+            "type": "string",
+            "description": "External transaction ID",
+            "mandatory": "0",
+            "minlength": 1,
+            "maxlength": 100
+          }
+        ]
+      },
+      "example": {
+        "success": [
+          {
+            "request": "baseURI/player/compensation/playername/BEZ_PLAYER1/amount/10/adminname/bez1/externaltranid/123477/",
+            "response": "{\"result\":{\"amount\":10,\"currentplayerbalance\":\"68\",\"executiontime\":\"955.2288 ms\",\"externaltransactionid\":\"123477\",\"instantcashtype\":\"local\",\"kiosktransactionid\":\"3326\",\"kiosktransactiontime\":\"2014-06-25 13:06:15\",\"ptinternaltransactionid\":\"16587871\",\"result\":\"Compensation OK\"}}"
+          }
+        ],
+        "error": [
+          {
+            "request": "baseURI/player/compensation/playername/TLEKUTSYPLAYER3/amount/8/adminname/kutsy",
+            "response": "{\"error\":\"InstantCash amount 9999999999999 is greater than balance\",\"errorcode\":98}"
+          }
+        ]
+      },
+      "errorresponse": {
+        "responsedata": [
+          {
+            "field": "error",
+            "type": "string",
+            "mandatory": "1",
+            "description": "Error message"
+          },
+          {
+            "field": "errorcode",
+            "type": "integer",
+            "mandatory": "1",
+            "description": "Error code"
+          }
+        ],
+        "errors": [
+          {
+            "code": 10,
+            "description": "Player name not specified"
+          },
+          {
+            "code": 11,
+            "description": "Casino name not specified"
+          },
+          {
+            "code": 13,
+            "description": "Amount not specified"
+          },
+          {
+            "code": 14,
+            "description": "Admin not specified"
+          },
+          {
+            "code": 18,
+            "description": "The possible values of the amount can be only numbers"
+          },
+          {
+            "code": 41,
+            "description": "Player does not exist"
+          },
+          {
+            "code": 43,
+            "description": "Player does not belongs to kiosk"
+          },
+          {
+            "code": 44,
+            "description": "Player is frozen"
+          },
+          {
+            "code": 45,
+            "description": "Language code is restricted for TLE"
+          },
+          {
+            "code": 46,
+            "description": "Player has waiting withdraw requests"
+          },
+          {
+            "code": 47,
+            "description": "Action is not allowed"
+          },
+          {
+            "code": 48,
+            "description": "Kiosk admin does not belong to TLE"
+          },
+          {
+            "code": 49,
+            "description": "Player is not allowed for the Entity"
+          },
+          {
+            "code": 71,
+            "description": "Could not load player data. Error: 'UMS API return error on access request attempt'"
+          },
+          {
+            "code": 72,
+            "description": "Could not load player data. Error: 'Service error accessing UMS API'"
+          },
+          {
+            "code": 73,
+            "description": "Could not load player data from database. Error: 'Database error occured, please contact support'. Please, try again later"
+          },
+          {
+            "code": 75,
+            "description": "Attribute 'attribute name' does not exist. Please enter the correct request"
+          },
+          {
+            "code": 92,
+            "description": "Deposit not allowed"
+          },
+          {
+            "code": 93,
+            "description": "Cannot make deposit. Amount is less than minimum deposit amount for this player."
+          },
+          {
+            "code": 94,
+            "description": "Cannot make deposit. Exeeds maximum deposit limit for this player."
+          },
+          {
+            "code": 95,
+            "description": "Casino not open"
+          },
+          {
+            "code": 96,
+            "description": "Cannot make deposit. Your deposit limit for period is excided"
+          },
+          {
+            "code": 97,
+            "description": "Kioskadmin deposit balance insufficient."
+          },
+          {
+            "code": 106,
+            "description": "Kioskadmin deposit balance update failed."
+          },
+          {
+            "code": 108,
+            "description": "Admin is frozen"
+          },
+          {
+            "code": 109,
+            "description": "Admin internal state mismatch with player internal state"
+          },
+          {
+            "code": 133,
+            "description": "Kiosk admin not found"
+          },
+          {
+            "code": 148,
+            "description": "Koisk admin code is not valid"
+          },
+          {
+            "code": 170,
+            "description": "Deposit error"
+          },
+          {
+            "code": 301,
+            "description": "API error."
+          },
+          {
+            "code": 302,
+            "description": "External transaction id already exists"
+          }
+        ]
+      },
+      "successresponse": {
+        "responsetype": "application/json",
+        "responsedata": [
+          {
+            "result": [
+              {
+                "field": "amount",
+                "type": "integer",
+                "mandatory": "1",
+                "description": "Compensation amount"
+              },
+              {
+                "field": "currentplayerbalance",
+                "type": "integer",
+                "mandatory": "0",
+                "description": "Current balance"
+              },
+              {
+                "field": "kiosktransactiontime",
+                "type": "date",
+                "mandatory": "1",
+                "description": "Transaction time"
+              },
+              {
+                "field": "kiosktransactionid",
+                "type": "integer",
+                "mandatory": "1",
+                "description": "Transaction ID"
+              },
+              {
+                "field": "ptinternaltransactionid",
+                "type": "integer",
+                "mandatory": "1",
+                "description": "Internal transaction ID"
+              },
+              {
+                "field": "externaltransactionid",
+                "type": "integer",
+                "mandatory": "1",
+                "description": "External transaction ID"
+              },
+              {
+                "field": "instantcashtype",
+                "type": "string",
+                "mandatory": "1",
+                "values": [
+                  "local",
+                  "api"
+                ]
+              },
+              {
+                "field": "executiontime",
+                "type": "date",
+                "mandatory": "1",
+                "description": "Execution time in millisecond"
+              },
+              {
+                "field": "result",
+                "type": "string",
+                "mandatory": "1",
+                "values": "Compensation OK"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "givebonus": {
+      "name": "Give bonus",
+      "description": "To give bonus to a specific player account",
+      "uri": "baseURI/player/givebonus/",
+      "method": "POST",
+      "params": {
+        "post": [
+          {
+            "name": "playername",
+            "type": "string",
+            "description": "Player name",
+            "mandatory": "1",
+            "minlength": 2,
+            "maxlength": 32,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "adminname",
+            "type": "string",
+            "description": "Admin name",
+            "mandatory": "1",
+            "minlength": 1,
+            "maxlength": 100,
+            "regex": "/[A-Za-z0-9]+/"
+          },
+          {
+            "name": "amount",
+            "type": "integer",
+            "description": "Amount",
+            "mandatory": "1",
+            "regex": "/^[0-9]+[.|,]*[0-9]+$/"
+          },
+          {
+            "name": "bonuscode",
+            "type": "integer",
+            "description": "ID of bonus template",
+            "mandatory": "1",
+            "regex": "/^[0-9]+$/"
+          }
+        ]
+      },
+      "example": {
+        "success": [
+          {
+            "request": "baseURI/player/givebonus/playername/PLAYER1/adminname/Petya1/amount/10/bonuscode/41461",
+            "response": "{\"result\":{\"result\":\"ok\"}}"
+          }
+        ],
+        "error": [
+          {
+            "request": "baseURI/player/givebonus/playername/PLAYER1/adminname/Petya2/amount/10/bonuscode/41461",
+            "response": "{\"error\":\"Admin is not allowed for the Entity #241081\",\"errorcode\":49}"
+          }
+        ]
+      },
+      "errorresponse": {
+        "responsedata": [
+          {
+            "field": "error",
+            "type": "string",
+            "mandatory": "1",
+            "description": "Error message"
+          },
+          {
+            "field": "errorcode",
+            "type": "integer",
+            "mandatory": "1",
+            "description": "Error code"
+          }
+        ],
+        "errors": [
+          {
+            "code": 10,
+            "description": "Player name not specified"
+          },
+          {
+            "code": 11,
+            "description": "Casino name not specified"
+          },
+          {
+            "code": 13,
+            "description": "Amount not specified"
+          },
+          {
+            "code": 14,
+            "description": "Admin not specified"
+          },
+          {
+            "code": 17,
+            "description": "Bonuscode not specified"
+          },
+          {
+            "code": 18,
+            "description": "The possible values of the deposit amount can be only numbers"
+          },
+          {
+            "code": 31,
+            "description": "The possible values of the 'bonuscode' can be only numbers"
+          },
+          {
+            "code": 47,
+            "description": "Player is not accessible to that admin"
+          },
+          {
+            "code": 48,
+            "description": "Admin is not allowed for the Entity"
+          },
+          {
+            "code": 49,
+            "description": "Player is not allowed for the Entity"
+          },
+          {
+            "code": 133,
+            "description": "Kiosk admin does not found"
+          },
+          {
+            "code": 172,
+            "description": "Kiosk bonus exceeded bonus maxamount"
+          },
+          {
+            "code": 173,
+            "description": "Kiosk bonus exceeded currency maxamount"
+          },
+          {
+            "code": 174,
+            "description": "Bonus balance not found"
+          },
+          {
+            "code": 175,
+            "description": "Insufficient bonus balance"
+          },
+          {
+            "code": 176,
+            "description": "Cannot add bonus. Your bonus limit for period is exceeded"
+          }
+        ]
+      },
+      "successresponse": {
+        "responsetype": "application/json",
+        "responsedata": [
+          {
+            "result": [
+              {
+                "field": "result",
+                "type": "string",
+                "mandatory": "1",
+                "values": "ok"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "balance": {
+      "name": "Get player balance",
+      "description": "To get the balance data for the specific player",
+      "uri": "baseURI/player/balance/",
+      "method": "POST",
+      "params": {
+        "post": [
+          {
+            "name": "playername",
+            "type": "string",
+            "description": "Player name",
+            "mandatory": "1",
+            "minlength": 2,
+            "maxlength": 32,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          }
+        ]
+      },
+      "example": {
+        "success": [
+          {
+            "request": "baseURI/player/balance/playername/PLAYER1",
+            "response": ""
+          }
+        ],
+        "error": [
+          {
+            "request": "baseURI/player/balance/playername/PLAYER2",
+            "response": "{\"error\":\"Player is not allowed for the Entity #241081\",\"errorcode\":49}"
+          }
+        ]
+      },
+      "errorresponse": {
+        "responsedata": [
+          {
+            "field": "error",
+            "type": "string",
+            "mandatory": "1",
+            "description": "Error message"
+          },
+          {
+            "field": "errorcode",
+            "type": "integer",
+            "mandatory": "1",
+            "description": "Error code"
+          }
+        ],
+        "errors": [
+          {
+            "code": 10,
+            "description": "Player name not specified"
+          },
+          {
+            "code": 11,
+            "description": "Casino name not specified"
+          },
+          {
+            "code": 41,
+            "description": "Player does not exist"
+          },
+          {
+            "code": 49,
+            "description": "Player is not allowed for the Entity"
+          },
+          {
+            "code": 71,
+            "description": "Could not load player data. Error: 'UMS API return error on access request attempt'"
+          },
+          {
+            "code": 72,
+            "description": "Could not load player data. Error: 'Service error accessing UMS API'"
+          },
+          {
+            "code": 73,
+            "description": "Could not load player data from database. Error: 'Database error occured, please contact support'. Please, try again later"
+          }
+        ]
+      },
+      "successresponse": {
+        "responsetype": "application/json",
+        "responsedata": [
+          {
+            "result": [
+              {
+                "field": "playername",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Player name"
+              },
+              {
+                "field": "bonusbalance",
+                "type": "integer",
+                "mandatory": "1",
+                "description": "Player bonus balance amount"
+              },
+              {
+                "field": "balance",
+                "type": "integer",
+                "mandatory": "1",
+                "description": "Player amount"
+              },
+              {
+                "field": "currencycode",
+                "type": "string",
+                "mandatory": "1",
+                "description": "ISO curency code"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "bonustemplates": {
+      "name": "Get bonus templates",
+      "description": "To get the bonus template for the specific player",
+      "uri": "baseURI/player/bonusTemplates/",
+      "method": "POST",
+      "params": {
+        "post": [
+          {
+            "name": "playername",
+            "type": "string",
+            "description": "Player name",
+            "mandatory": "1",
+            "minlength": 2,
+            "maxlength": 32,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          }
+        ]
+      },
+      "example": {
+        "success": [
+          {
+            "request": "baseURI/player/bonusTemplates/playername/PLAYER1",
+            "response": "{\"result\":[]}"
+          }
+        ],
+        "error": [
+          {
+            "request": "baseURI/player/bonusTemplates/playername/PLAYER2",
+            "response": "{\"error\":\"Player is not allowed for the Entity #241081\",\"errorcode\":49}"
+          }
+        ]
+      },
+      "errorresponse": {
+        "responsedata": [
+          {
+            "field": "error",
+            "type": "string",
+            "mandatory": "1",
+            "description": "Error message"
+          },
+          {
+            "field": "errorcode",
+            "type": "integer",
+            "mandatory": "1",
+            "description": "Error code"
+          }
+        ],
+        "errors": [
+          {
+            "code": 10,
+            "description": "Player name not specified"
+          },
+          {
+            "code": 11,
+            "description": "Casino name not specified"
+          },
+          {
+            "code": 41,
+            "description": "Player does not exist"
+          },
+          {
+            "code": 49,
+            "description": "Player is not allowed for the Entity"
+          },
+          {
+            "code": 71,
+            "description": "Could not load player data. Error: 'UMS API return error on access request attempt'"
+          },
+          {
+            "code": 72,
+            "description": "Could not load player data. Error: 'Service error accessing UMS API'"
+          },
+          {
+            "code": 73,
+            "description": "Could not load player data from database. Error: 'Database error occured, please contact support'. Please, try again later"
+          }
+        ]
+      },
+      "successresponse": {
+        "responsetype": "application/json",
+        "responsedata": [
+          {
+            "result": [
+              {
+                "field": "BONUSCODE",
+                "type": "integer",
+                "mandatory": "0",
+                "description": "Code of bonus template"
+              },
+              {
+                "field": "NAME",
+                "type": "string",
+                "mandatory": "0",
+                "description": "Template name"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "online": {
+      "name": "Is player online",
+      "description": "To check if the player is currently online",
+      "uri": "baseURI/player/online/",
+      "method": "POST",
+      "params": {
+        "post": [
+          {
+            "name": "playername",
+            "type": "string",
+            "description": "Player's name",
+            "mandatory": "1",
+            "minlength": 2,
+            "maxlength": 32,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          }
+        ]
+      },
+      "example": {
+        "success": [
+          {
+            "request": "baseURI/player/online/playername/PLAYER1",
+            "response": "{\"result\":{\"result\":0}}"
+          }
+        ],
+        "error": [
+          {
+            "request": "baseURI/player/online/playername/player01",
+            "response": "{\"error\":\"Player is not allowed for the Entity #241081\",\"errorcode\":49}"
+          }
+        ]
+      },
+      "errorresponse": {
+        "responsedata": [
+          {
+            "field": "error",
+            "type": "string",
+            "mandatory": "1",
+            "description": "Error message"
+          },
+          {
+            "field": "errorcode",
+            "type": "integer",
+            "mandatory": "1",
+            "description": "Error code"
+          }
+        ],
+        "errors": [
+          {
+            "code": 10,
+            "description": "Player name not specified"
+          },
+          {
+            "code": 11,
+            "description": "Casino name not specified"
+          },
+          {
+            "code": 41,
+            "description": "Player does not exist"
+          },
+          {
+            "code": 49,
+            "description": "Player is not allowed for the Entity"
+          },
+          {
+            "code": 71,
+            "description": "Could not load player data. Error: 'UMS API return error on access request attempt'"
+          },
+          {
+            "code": 72,
+            "description": "Could not load player data. Error: 'Service error accessing UMS API'"
+          },
+          {
+            "code": 73,
+            "description": "Could not load player data from database. Error: 'Database error occured, please contact support'. Please, try again later"
+          }
+        ]
+      },
+      "successresponse": {
+        "responsetype": "application/json",
+        "responsedata": [
+          {
+            "result": [
+              {
+                "field": "result",
+                "type": "string",
+                "mandatory": "1",
+                "values": [
+                  1,
+                  0
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "checktoken": {
+      "name": "Check login token",
+      "description": "To check the login token of the specific player account",
+      "uri": "baseURI/player/checktoken",
+      "method": "GET/POST",
+      "params": {
+        "post": [
+          {
+            "name": "playername",
+            "type": "string",
+            "description": "Player name",
+            "mandatory": "1",
+            "minlength": 2,
+            "maxlength": 32,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          },
+          {
+            "name": "token",
+            "type": "string",
+            "description": "Token",
+            "mandatory": "1"
+          }
+        ]
+      },
+      "example": {
+        "success": [
+          {
+            "request": "baseURI/player/checktoken/playername/PLAYER1/token/1",
+            "response": "{\"result\":{\"result\":1}}"
+          }
+        ],
+        "error": [
+          {
+            "request": "baseURI/player/checktoken/token/1",
+            "response": "{\"error\":\"Player name is not specified\",\"errorcode\":10}"
+          }
+        ]
+      },
+      "errorresponse": {
+        "responsedata": [
+          {
+            "field": "error",
+            "type": "string",
+            "mandatory": "1",
+            "description": "Error message"
+          },
+          {
+            "field": "errorcode",
+            "type": "integer",
+            "mandatory": "1",
+            "description": "Error code"
+          }
+        ],
+        "errors": [
+          {
+            "code": 10,
+            "description": "Player name not specified"
+          },
+          {
+            "code": 11,
+            "description": "Casino name not specified"
+          },
+          {
+            "code": 20,
+            "description": "Token is not specified"
+          },
+          {
+            "code": 49,
+            "description": "Player is not allowed for the Entity"
+          }
+        ]
+      },
+      "successresponse": {
+        "responsetype": "application/json",
+        "responsedata": [
+          {
+            "result": [
+              {
+                "field": "result",
+                "type": "string",
+                "mandatory": "1",
+                "values": [
+                  1,
+                  0
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "logout": {
+      "name": "Logout player",
+      "description": "To logout the specific player from the game",
+      "uri": "baseURI/player/logout/",
+      "method": "POST",
+      "params": {
+        "post": [
+          {
+            "name": "playername",
+            "type": "string",
+            "description": "Player username",
+            "mandatory": "1",
+            "minlength": 2,
+            "maxlength": 32,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          }
+        ]
+      },
+      "example": {
+        "success": [
+          {
+            "request": "baseURI/player/logout/playername/ZELTESTERR",
+            "response": "{\"result\":{\"result\":\"Logout request has been succesfully sent\"}}"
+          }
+        ],
+        "error": [
+          {
+            "request": "baseURI/player/logout/playername/ZELTESTERR",
+            "response": "{\"error\":\"Player does not exist\",\"errorcode\":41}"
+          }
+        ]
+      },
+      "errorresponse": {
+        "responsedata": [
+          {
+            "field": "error",
+            "type": "string",
+            "mandatory": "1",
+            "description": "Error message"
+          },
+          {
+            "field": "errorcode",
+            "type": "integer",
+            "mandatory": "1",
+            "description": "Error code"
+          }
+        ],
+        "errors": [
+          {
+            "code": 10,
+            "description": "Player name not specified"
+          },
+          {
+            "code": 11,
+            "description": "Casino name not specified"
+          },
+          {
+            "code": 41,
+            "description": "Player does not exist"
+          },
+          {
+            "code": 49,
+            "description": "Player is not allowed for the Entity"
+          },
+          {
+            "code": 71,
+            "description": "Could not load player data. Error: 'UMS API return error on access request attempt'"
+          },
+          {
+            "code": 72,
+            "description": "Could not load player data. Error: 'Service error accessing UMS API'"
+          },
+          {
+            "code": 73,
+            "description": "Could not load player data from database. Error: 'Database error occured, please contact support'. Please, try again later"
+          },
+          {
+            "code": 167,
+            "description": "isInGame() failed 'error message'"
+          }
+        ]
+      },
+      "successresponse": {
+        "responsetype": "application/json",
+        "responsedata": [
+          {
+            "result": [
+              {
+                "field": "result",
+                "type": "string",
+                "mandatory": "1",
+                "values": "Logout request has been succesfully sent"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "masslogout": {
+      "name": "Mass logout players",
+      "description": "To logout mass volume of players from the game",
+      "uri": "baseURI/player/masslogout",
+      "method": "POST",
+      "params": {
+        "post": [
+          {
+            "name": "params",
+            "type": "json",
+            "description": "An array of parameters. You can see the list of params in the table \"Input params at the array of parameters\"",
+            "mandatory": "1"
+          }
+        ],
+        "array": [
+          {
+            "name": "playername",
+            "type": "string",
+            "description": "Player's username",
+            "mandatory": "1",
+            "minlength": 2,
+            "maxlength": 32,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          }
+        ]
+      },
+      "example": {
+        "success": [
+          {
+            "request": "baseURI/player/masslogout?params=[{\"playername\":\"BEZ_PLAYER1\"},{\"playername\":\"player02\"}]",
+            "response": "{\"result\":[{\"playername\":\"BEZ_PLAYER1\",\"logout\":{\"result\":\"Player has been logged out.\"}},{\"playername\":\"player02\",\"logout\":{\"error\":\"Player is not allowed for the Entity #241081\",\"errorcode\":49}}]}"
+          }
+        ],
+        "error": [
+          {
+            "request": "baseURI/player/masslogout?param=[{\"playername\":\"BEZ_PLAYER1\"},{\"playername\":\"player02\"}]",
+            "response": "{\"error\":\"Players params not specified\",\"errorcode\":168}"
+          }
+        ]
+      },
+      "errorresponse": {
+        "responsedata": [
+          {
+            "field": "error",
+            "type": "string",
+            "mandatory": "0",
+            "description": "Error message"
+          },
+          {
+            "field": "errorcode",
+            "type": "integer",
+            "mandatory": "0",
+            "description": "Error code"
+          },
+          [
+            [
+              {
+                "result": [
+                  {
+                    "field": "error",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Error message"
+                  },
+                  {
+                    "field": "errorcode",
+                    "type": "integer",
+                    "mandatory": "0",
+                    "description": "Error message"
+                  }
+                ]
+              }
+            ]
+          ]
+        ],
+        "errors": [
+          {
+            "code": 11,
+            "description": "Casino name not specified"
+          },
+          {
+            "code": 41,
+            "description": "Player does not exist"
+          },
+          {
+            "code": 49,
+            "description": "Player is not allowed for the Entity"
+          },
+          {
+            "code": 71,
+            "description": "Could not load player data. Error: 'UMS API return error on access request attempt'"
+          },
+          {
+            "code": 72,
+            "description": "Could not load player data. Error: 'Service error accessing UMS API'"
+          },
+          {
+            "code": 73,
+            "description": "Could not load player data from database. Error: 'Database error occured, please contact support'. Please, try again later"
+          },
+          {
+            "code": 167,
+            "description": "isInGame() failed 'error message'"
+          },
+          {
+            "code": 168,
+            "description": "Players params not specified"
+          }
+        ]
+      },
+      "successresponse": {
+        "responsetype": "application/json",
+        "responsedata": [
+          {
+            "result": [
+              {
+                "field": "playername",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Player's username"
+              },
+              {
+                "logout": [
+                  {
+                    "field": "result",
+                    "type": "string",
+                    "mandatory": "0",
+                    "values": "Player has been logged out."
+                  },
+                  {
+                    "field": "error",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Error message"
+                  },
+                  {
+                    "field": "errorcode",
+                    "type": "string",
+                    "mandatory": "0",
+                    "description": "Error code"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "resetfailedlogin": {
+      "name": "Reset failed login attempts",
+      "description": "To remove temporary lock of the specific player account upon entering 3 incorrect username or password",
+      "uri": "baseURI/player/resetFailedLogin/",
+      "method": "POST",
+      "params": {
+        "post": [
+          {
+            "name": "playername",
+            "type": "string",
+            "description": "Player's username",
+            "mandatory": "1",
+            "minlength": 2,
+            "maxlength": 32,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          }
+        ]
+      },
+      "example": {
+        "success": [
+          {
+            "request": "baseURI/player/resetFailedLogin/playername/ZELTESTERR",
+            "response": "{\"result\":{\"result\":\"Failed login attempts count has been reset\"}}"
+          }
+        ],
+        "error": [
+          {
+            "request": "baseURI/player/resetFailedLogin/playername/ZELTESTERR",
+            "response": "{\"error\":\"Player does not exist\",\"errorcode\":41}"
+          }
+        ]
+      },
+      "errorresponse": {
+        "responsedata": [
+          {
+            "field": "error",
+            "type": "string",
+            "mandatory": "1",
+            "description": "Error message"
+          },
+          {
+            "field": "errorcode",
+            "type": "integer",
+            "mandatory": "1",
+            "description": "Error code"
+          }
+        ],
+        "errors": [
+          {
+            "code": 10,
+            "description": "Player name not specified"
+          },
+          {
+            "code": 11,
+            "description": "Casino name not specified"
+          },
+          {
+            "code": 41,
+            "description": "Player does not exist"
+          },
+          {
+            "code": 49,
+            "description": "Player is not allowed for the Entity"
+          },
+          {
+            "code": 71,
+            "description": "Could not load player data. Error: 'UMS API return error on access request attempt'"
+          },
+          {
+            "code": 72,
+            "description": "Could not load player data. Error: 'Service error accessing UMS API'"
+          },
+          {
+            "code": 73,
+            "description": "Could not load player data from database. Error: 'Database error occured, please contact support'. Please, try again later"
+          }
+        ]
+      },
+      "successresponse": {
+        "responsetype": "application/json",
+        "responsedata": [
+          {
+            "result": [
+              {
+                "field": "result",
+                "type": "string",
+                "mandatory": "1",
+                "values": "Failed login attempts count has been reset"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "revertbrokengame": {
+      "name": "Revert broken game",
+      "description": "To revert the broken game of the specific player",
+      "uri": "baseURI/player/revertBrokenGame/",
+      "method": "POST",
+      "params": {
+        "post": [
+          {
+            "name": "playername",
+            "type": "string",
+            "description": "Player username",
+            "mandatory": "1",
+            "minlength": 2,
+            "maxlength": 32,
+            "regex": "/[A-Za-z0-9.\\/,_-&#]+/"
+          }
+        ]
+      },
+      "example": {
+        "success": [
+          {
+            "request": "baseURI/player/revertBrokenGame/playername/PLAYER1",
+            "response": "{\"result\":{\"result\":\"Games revert call has been sent. It may take couple of minutes to take effect\"}}"
+          }
+        ],
+        "error": [
+          {
+            "request": "baseURI/player/revertBrokenGame/playername/PLAYER2",
+            "response": "{\"error\":\"Player is not allowed for the Entity #241081\",\"errorcode\":49}"
+          }
+        ]
+      },
+      "errorresponse": {
+        "responsedata": [
+          {
+            "field": "error",
+            "type": "string",
+            "mandatory": "1",
+            "description": "Error message"
+          },
+          {
+            "field": "errorcode",
+            "type": "integer",
+            "mandatory": "1",
+            "description": "Error code"
+          }
+        ],
+        "errors": [
+          {
+            "code": 10,
+            "description": "Player name not specified"
+          },
+          {
+            "code": 11,
+            "description": "Casino name not specified"
+          },
+          {
+            "code": 49,
+            "description": "Player is not allowed for the Entity"
+          }
+        ]
+      },
+      "successresponse": {
+        "responsetype": "application/json",
+        "responsedata": [
+          {
+            "result": [
+              {
+                "field": "result",
+                "type": "string",
+                "mandatory": "1",
+                "values": "Games revert call has been sent. It may take couple of minutes to take effect"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "list": {
+      "name": "Get players",
+      "description": "To get the list of all players created",
+      "uri": "baseURI/player/list/",
+      "method": "POST",
+      "params": {
+        "post": [
+          {
+            "name": "kioskname",
+            "type": "string",
+            "description": "Kiosk name",
+            "mandatory": "0",
+            "minlength": 1,
+            "maxlength": 100,
+            "regex": "/[A-Za-z0-9.\\/,_-]+/"
+          },
+          {
+            "name": "adminname",
+            "type": "string",
+            "description": "Kiosk admin name",
+            "mandatory": "0",
+            "minlength": 1,
+            "maxlength": 100,
+            "regex": "/[A-Za-z0-9]+/"
+          },
+          {
+            "name": "online",
+            "type": "boolean",
+            "description": "Show online players",
+            "mandatory": "0",
+            "regex": "/^0|1$/",
+            "values": [
+              0,
+              1
+            ]
+          },
+          {
+            "name": "page",
+            "type": "integer",
+            "description": "Page",
+            "mandatory": "0",
+            "regex": "/^[0-9]+$/"
+          },
+          {
+            "name": "perPage",
+            "type": "integer",
+            "description": "perPage",
+            "mandatory": "0",
+            "regex": "/^[0-9]+$/"
+          }
+        ]
+      },
+      "example": {
+        "success": [
+          {
+            "request": "baseURI/player/list/adminname/bez1/kioskname/bez_kiosk1/page/2/perPage/10",
+            "response": "{\"result\":[{\"PLAYERNAME\":\"BEZ-TEST1\",\"SIGNUPDATE\":\"2014-02-07\",\"VIPLEVEL\":\"3\",\"KIOSKNAME\":\"bez_kiosk1\",\"ADMINNAME\":\"bez1\",\"FROZEN\":\"0\",\"LASTLOGINDATE\":null,\"BALANCE\":\"0\",\"BONUSBALANCE\":\"0\",\"IP\":null},{\"PLAYERNAME\":\"BEZ-TEST2\",\"SIGNUPDATE\":\"2014-02-07\",\"VIPLEVEL\":\"3\",\"KIOSKNAME\":\"bez_kiosk2\",\"ADMINNAME\":\"bez2\",\"FROZEN\":\"0\",\"LASTLOGINDATE\":null,\"BALANCE\":\"0\",\"BONUSBALANCE\":\"0\",\"IP\":null},{\"PLAYERNAME\":\"BEZ@I.UA\",\"SIGNUPDATE\":\"2014-05-05\",\"VIPLEVEL\":\"3\",\"KIOSKNAME\":\"bez_kiosk1\",\"ADMINNAME\":\"bez1\",\"FROZEN\":\"0\",\"LASTLOGINDATE\":null,\"BALANCE\":\"0\",\"BONUSBALANCE\":\"0\",\"IP\":null}],\"total\":{\"TotalCount\":\"3\",\"TotalBalance\":241,\"TotalBonusBalance\":20},\"pagination\":{\"currentPage\":1,\"totalPages\":4,\"itemsPerPage\":50}}"
+          }
+        ],
+        "error": [
+          {
+            "request": "baseURI/player/list/kioskname/bez_kiosk5/adminname/bez1",
+            "response": "{\"error\":\"Kiosk not found\",\"errorcode\":130}"
+          }
+        ]
+      },
+      "errorresponse": {
+        "responsedata": [
+          {
+            "field": "error",
+            "type": "string",
+            "mandatory": "1",
+            "description": "Error message"
+          },
+          {
+            "field": "errorcode",
+            "type": "integer",
+            "mandatory": "1",
+            "description": "Error code"
+          }
+        ],
+        "errors": [
+          {
+            "code": 11,
+            "description": "Casino name not specified"
+          },
+          {
+            "code": 48,
+            "description": "Admin is not allowed for the TLE"
+          },
+          {
+            "code": 130,
+            "description": "Kiosk not found"
+          },
+          {
+            "code": 133,
+            "description": "Admin not found"
+          },
+          {
+            "code": 136,
+            "description": "Kiosk is not allowed for the TLE"
+          }
+        ]
+      },
+      "successresponse": {
+        "responsetype": "application/json",
+        "responsedata": [
+          {
+            "result": [
+              {
+                "field": "PLAYERNAME",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Player's username"
+              },
+              {
+                "field": "SIGNUPDATE",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Player's sign up date"
+              },
+              {
+                "field": "VIPLEVEL",
+                "type": "integer",
+                "mandatory": "1",
+                "description": "VIP level"
+              },
+              {
+                "field": "KIOSKNAME",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Kiosk name"
+              },
+              {
+                "field": "ADMINNAME",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Kiosk admin name"
+              },
+              {
+                "field": "FROZEN",
+                "type": "integer",
+                "mandatory": "1",
+                "values": [
+                  0,
+                  1
+                ],
+                "description": "Frozen"
+              },
+              {
+                "field": "LASTLOGINDATE",
+                "type": "string",
+                "mandatory": "0",
+                "description": "Player's last login date"
+              },
+              {
+                "field": "BALANCE",
+                "type": "float",
+                "mandatory": "1",
+                "description": "Player's balance"
+              },
+              {
+                "field": "BONUSBALANCE",
+                "type": "float",
+                "mandatory": "1",
+                "description": "Player's bonus balance"
+              },
+              {
+                "field": "IP",
+                "type": "string",
+                "mandatory": "1",
+                "description": "Player's last login IP"
+              }
+            ]
+          },
+          {
+            "total": [
+              {
+                "field": "TotalCount",
+                "type": "integer",
+                "mandatory": "1",
+                "description": "Total count"
+              },
+              {
+                "field": "TotalBalance",
+                "type": "float",
+                "mandatory": "1",
+                "description": "Total player's balance"
+              },
+              {
+                "field": "TotalBonusBalance",
+                "type": "float",
+                "mandatory": "1",
+                "description": "Total player's bonus balance"
+              }
+            ]
+          },
+          {
+            "pagination": [
+              {
+                "field": "currentPage",
+                "type": "integer",
+                "mandatory": "1",
+                "description": "Current page"
+              },
+              {
+                "field": "totalPages",
+                "type": "integer",
+                "mandatory": "1",
+                "description": "Total pages"
+              },
+              {
+                "field": "itemsPerPage",
+                "type": "integer",
+                "mandatory": "1",
+                "description": "Items per page"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+package bean;
+
+public class Example {
+	
+	private ExampleBean success;
+	private ExampleBean error;
+	
+	public ExampleBean getSuccess() {
+		return success;
+	}
+	public void setSuccess(ExampleBean success) {
+		this.success = success;
+	}
+	public ExampleBean getError() {
+		return error;
+	}
+	public void setError(ExampleBean error) {
+		this.error = error;
+	}
+	
+}

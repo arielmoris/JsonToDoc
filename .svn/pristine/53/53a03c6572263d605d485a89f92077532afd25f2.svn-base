@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre7"/>
+	<classpathentry kind="lib" path="gson-2.3.jar" sourcepath="C:/Users/JavaDev004/.m2/repository/com/google/code/gson/gson/2.3/gson-2.3-sources.jar"/>
+	<classpathentry kind="lib" path="commons-beanutils-1.8.0.jar"/>
+	<classpathentry kind="lib" path="commons-collections-2.1.1.jar"/>
+	<classpathentry kind="lib" path="commons-digester-2.1.jar"/>
+	<classpathentry kind="lib" path="commons-javaflow-20060411.jar"/>
+	<classpathentry kind="lib" path="commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="groovy-all-2.0.1.jar"/>
+	<classpathentry kind="lib" path="jodreports-2.4.0.jar"/>
+	<classpathentry kind="lib" path="freemarker.jar"/>
+	<classpathentry kind="lib" path="commons.io_2.0.1.jar"/>
+	<classpathentry kind="lib" path="xom-1.2.8.jar"/>
+	<classpathentry kind="lib" path="slf4j.api-1.6.1.jar"/>
+	<classpathentry kind="lib" path="logback-classic-1.1.2.jar"/>
+	<classpathentry kind="lib" path="logback-core-1.1.2.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

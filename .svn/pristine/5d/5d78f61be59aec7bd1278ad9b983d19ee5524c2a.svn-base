@@ -1,0 +1,41 @@
+package jsontodoc;
+
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Map;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+public class Main {
+	
+	public static void main(String args[]){
+		String json_source = "player.json";
+		try {
+			Map map = (Map) parseJson(json_source);
+			System.out.println(map.get("player"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	static Object parseJson(String fileName) throws IOException{
+		File file = new File(Main.class.getClassLoader().getResource(fileName).getFile());
+		FileReader reader = new FileReader(file);
+		
+		StringBuffer strBuffer = new StringBuffer();
+		char[] cBuff = new char[1];
+		while(reader.read(cBuff, 0, 1) != -1){
+			strBuffer.append(cBuff[0]);
+		}
+		
+		String jsonStr = strBuffer.toString();
+		
+		System.out.println(jsonStr);
+		
+		Gson gson = new GsonBuilder().create();
+		Map map = gson.fromJson(jsonStr, Map.class);
+		return map;
+	}
+}
