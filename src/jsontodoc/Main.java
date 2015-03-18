@@ -15,6 +15,7 @@ import net.sf.jooreports.templates.DocumentTemplateFactory;
 import bean.ErrorResponse;
 import bean.Example;
 import bean.ExampleBean;
+import bean.ExtraObject;
 import bean.Method;
 import bean.Param;
 import bean.Post;
@@ -24,7 +25,6 @@ import bean.SuccessResponseData;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
 import com.google.gson.internal.LinkedTreeMap;
 
 public class Main {
@@ -43,8 +43,7 @@ public class Main {
 			for (Entry<String, Object> it : main.entrySet()) {
 
 				Method method = new Method();
-				LinkedTreeMap<String, Object> entryMethods = (LinkedTreeMap<String, Object>) it
-						.getValue();
+				LinkedTreeMap<String, Object> entryMethods = (LinkedTreeMap<String, Object>) it.getValue();
 				for (Entry<String, Object> itMethod : entryMethods.entrySet()) {
 					if (itMethod.getKey().equals("name")) {
 						method.setName((String) itMethod.getValue());
@@ -104,8 +103,7 @@ public class Main {
 	static Param getParamFromIterator(Entry<String, Object> itMethod) {
 		Param param = new Param();
 		List<Post> postList = new ArrayList<Post>();
-		List<LinkedTreeMap<String, Object>> itPosts = (List) ((LinkedTreeMap<String, Object>) itMethod
-				.getValue()).get("post");
+		List<LinkedTreeMap<String, Object>> itPosts = (List) ((LinkedTreeMap<String, Object>) itMethod.getValue()).get("post");
 		for (LinkedTreeMap<String, Object> itPost : itPosts) {
 			Post post = new Post();
 			for (Entry<String, Object> itPostContent : itPost.entrySet()) {
@@ -144,15 +142,13 @@ public class Main {
 	static Example getExampleFromItMethod(Entry<String, Object> itMethod) {
 		Example example = new Example();
 
-		LinkedTreeMap<String, Object> exampleInner = (LinkedTreeMap<String, Object>) itMethod
-				.getValue();
+		LinkedTreeMap<String, Object> exampleInner = (LinkedTreeMap<String, Object>) itMethod.getValue();
 
 		for (Entry<String, Object> exampleIterator : exampleInner.entrySet()) {
 			switch (exampleIterator.getKey()) {
 			case "success": {
 				List<ExampleBean> successList = new ArrayList<ExampleBean>();
-				List<LinkedTreeMap<String, Object>> itSuccesses = (List) (exampleIterator
-						.getValue());
+				List<LinkedTreeMap<String, Object>> itSuccesses = (List) (exampleIterator.getValue());
 				for (LinkedTreeMap<String, Object> itSuccess : itSuccesses) {
 					ExampleBean exampleBean = new ExampleBean();
 					for (Entry<String, Object> itSuccessContent : itSuccess
@@ -175,8 +171,7 @@ public class Main {
 			}
 			case "error": {
 				List<ExampleBean> errorList = new ArrayList<ExampleBean>();
-				List<LinkedTreeMap<String, Object>> itErrors = (List) (exampleIterator
-						.getValue());
+				List<LinkedTreeMap<String, Object>> itErrors = (List) (exampleIterator.getValue());
 				for (LinkedTreeMap<String, Object> itError : itErrors) {
 					ExampleBean exampleBean = new ExampleBean();
 					for (Entry<String, Object> itErrorContent : itError
@@ -254,8 +249,7 @@ public class Main {
 			}
 			case "errors": {
 				List<bean.Error> errorList = new ArrayList<bean.Error>();
-				List<LinkedTreeMap<String, Object>> itErrors = (List) (errorResponseIterator
-						.getValue());
+				List<LinkedTreeMap<String, Object>> itErrors = (List) (errorResponseIterator.getValue());
 				for (LinkedTreeMap<String, Object> itError : itErrors) {
 					bean.Error error = new bean.Error();
 					for (Entry<String, Object> itErrorContent : itError
@@ -285,8 +279,7 @@ public class Main {
 			Entry<String, Object> itMethod) {
 		SuccessResponse successResponse = new SuccessResponse();
 
-		LinkedTreeMap<String, Object> successResponseInner = (LinkedTreeMap<String, Object>) itMethod
-				.getValue();
+		LinkedTreeMap<String, Object> successResponseInner = (LinkedTreeMap<String, Object>) itMethod.getValue();
 
 		for (Entry<String, Object> successResponseIterator : successResponseInner
 				.entrySet()) {
@@ -329,22 +322,17 @@ public class Main {
 								} else if(resultInner.getKey().equals("values")){
 									result.setValues(resultInner.getValue().toString());
 								}else{
-									/*Map<String, Object> map = new HashMap<String, Object>();
-									
-									map.put(resultInner.getKey(), )
-									*/
-									result = null;
-									System.out.println(resultInner.getKey()+" "+resultInner.getValue());
+									result = getExtraObject(resultInner, result);
 								}
 							}
 							if(result != null){
 								resultList.add(result);
 							}
 						}
+						successResponseData.setName(resultIterator.getKey());
+						successResponseData.setResult(resultList);
+						successResponseDataList.add(successResponseData);
 					}
-					successResponseData.setResult(resultList);
-					successResponseDataList.add(successResponseData);
-
 				}
 				successResponse.setResponseData(successResponseDataList);
 				break;
@@ -352,5 +340,37 @@ public class Main {
 			}
 		}
 		return successResponse;
+	}
+	
+	private static ResponseData getExtraObject(Entry<String, Object> in, ResponseData out){
+		List<ResponseData> extraResponseList = new ArrayList<>();
+		List<Object> extraValue = (List<Object>) in.getValue();
+		for (Object obj : extraValue){
+			LinkedTreeMap<String, Object> extraResponseTreeMap = (LinkedTreeMap<String, Object>)obj;
+			ResponseData extraResponse = new ResponseData();
+			for (Entry<String, Object> extraInner : extraResponseTreeMap.entrySet()){
+				if (extraInner.getKey().equals("field")) {
+					extraResponse.setField((String) extraInner.getValue());
+				} else if (extraInner.getKey().equals("type")) {
+					extraResponse.setType((String) extraInner.getValue());
+				} else if (extraInner.getKey().equals("mandatory")) {
+					extraResponse.setMandatory((String) extraInner
+							.getValue());
+				} else if (extraInner.getKey().equals("description")) {
+					extraResponse.setDescription((String) extraInner
+							.getValue());
+				} else if(extraInner.getKey().equals("values")){
+					extraResponse.setValues(extraInner.getValue().toString());
+				}else{
+					extraResponse = getExtraObject(extraInner, extraResponse);
+				}
+			}
+			extraResponseList.add(extraResponse);
+		}
+		ExtraObject extraObject = new ExtraObject();
+		extraObject.setName(in.getKey());
+		extraObject.setResult(extraResponseList);
+		out.setExtraObject(extraObject);
+		return out;
 	}
 }

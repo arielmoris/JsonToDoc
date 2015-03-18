@@ -2,7 +2,7 @@ package bean;
 
 import java.util.List;
 
-public class SuccessResponseData {
+public class ExtraObject {
 	private String name;
 	private List<ResponseData> result;
 	public String getName() {

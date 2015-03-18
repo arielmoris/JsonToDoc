@@ -1,7 +1,5 @@
 package bean;
 
-import java.util.List;
-import java.util.Map;
 
 public class ResponseData {
 	private String field;
@@ -9,7 +7,7 @@ public class ResponseData {
 	private String mandatory;
 	private String description;
 	private String values;
-	private Map<String, List<Object>> extraObject;
+	private ExtraObject extraObject;
 	
 	public String getField() {
 		return field;
@@ -41,5 +39,10 @@ public class ResponseData {
 	public void setValues(String values) {
 		this.values = values;
 	}
-	
+	public ExtraObject getExtraObject() {
+		return extraObject;
+	}
+	public void setExtraObject(ExtraObject extraObject) {
+		this.extraObject = extraObject;
+	}
 }
